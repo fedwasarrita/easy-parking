@@ -1,8 +1,13 @@
 <resources>
 
-    <string name="app_name">easy_parking</string>
+    <string name="app_name">Easy Parking</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="home_seek_place_label">"Je cherche une place : "</string>
+    <string name="home_free_label">gratuite</string>
+    <string name="home_not_free_label">payante</string>
+    <string name="home_handicap_label">accessible handicapée</string>
+    <string name="home_secure_label">sécurisée</string>
 
 </resources>
