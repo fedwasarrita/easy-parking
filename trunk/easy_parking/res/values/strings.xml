@@ -9,5 +9,7 @@
     <string name="home_not_free_label">payante</string>
     <string name="home_handicap_label">accessible handicapée</string>
     <string name="home_secure_label">sécurisée</string>
+    <string name="title_activity_map_view">MapViewActivity</string>
+    <string name="title_activity_place_details">PlaceDetailsActivity</string>
 
 </resources>
