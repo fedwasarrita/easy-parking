@@ -8,12 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="18dp"
         android:text="@string/home_seek_place_label" />
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/checkBoxFree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -23,31 +25,31 @@
         android:text="@string/home_free_label" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBoxNoFree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/checkBox1"
+        android:layout_below="@+id/checkBoxFree"
         android:checked="true"
         android:text="@string/home_not_free_label" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/checkBoxHandicap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/checkBox2"
+        android:layout_below="@+id/checkBoxNoFree"
         android:text="@string/home_handicap_label" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
+    
+        <CheckBox
+        android:id="@+id/checkBoxSecure"
+		android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/checkBox3"
+        android:layout_below="@+id/checkBoxHandicap"
         android:text="@string/home_secure_label" />
 
     <LinearLayout
@@ -56,24 +58,58 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/checkBox4"
+        android:layout_below="@+id/checkBoxSecure"
         android:layout_marginTop="20dp" >
-
+        
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/textView1"
-            android:layout_below="@+id/checkBox4"
-            android:layout_weight="50"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonByGeolocalisation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="Button" />
+            android:text="@string/home_Geolocalisation_label" />
+		    
+        <Button
+            android:id="@+id/buttonByAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:onClick="showAdressBlock"
+            android:text="@string/home_away_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/AdressBlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/textViewAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/home_adress_label"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp" />
+
+        <Button
+            android:id="@+id/buttonGo"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/home_search_label" />
 
     </LinearLayout>
 
