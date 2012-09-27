@@ -14,6 +14,13 @@
     <string name="home_search_label">Go</string>
     <string name="home_adress_label">Adresse :</string>
     <string name="home_Geolocalisation_label">Autour de moi</string>
-    <string name="home_away_label">Ailleurs</string>
+    <string name="home_away_label">Aller à </string>
+    <string name="home_perimetre_label">Périmètre :</string>
+    
     <string name="title_activity_list_results">ListResultsActivity</string>
+     <string name="detail_title_label">Informations sur l emplacement</string>
+     <string name="detail_localisation_label">localisation</string>
+     <string name="detail_contrainte_horaire_label">contraintes horaires</string>
+     <string name="detail_contrainte_part_label">contraintes particulières</string>      
+     <string name="detail_type_label">type</string>
 </resources>
