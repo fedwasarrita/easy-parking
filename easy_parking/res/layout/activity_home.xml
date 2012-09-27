@@ -53,12 +53,38 @@
         android:text="@string/home_secure_label" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/perimeterBlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/checkBoxSecure"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp" >    
+        
+        <TextView
+        android:id="@+id/textViewPerimetre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/home_perimetre_label" />
+        
+        <SeekBar android:id="@+id/seekBarPerimetre" 
+            android:max="1000" 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"  
+            android:layout_marginTop="10dp"></SeekBar>
+        
+     </LinearLayout>    
+        
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/perimeterBlock"
         android:layout_marginTop="20dp" >
         
         <Button
@@ -78,6 +104,16 @@
             android:text="@string/home_away_label" />
 
     </LinearLayout>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <LinearLayout
         android:id="@+id/AdressBlock"

@@ -6,9 +6,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
+        android:layout_marginTop="14dp"
+        android:text="@string/detail_title_label"
         tools:context=".PlaceDetailsActivity" />
+    
+    
+    
+    
+    
 
 </RelativeLayout>
