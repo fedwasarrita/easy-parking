@@ -4,9 +4,11 @@ package com.easy_parking;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 public class HomeActivity extends Activity {
@@ -28,8 +30,23 @@ public class HomeActivity extends Activity {
         ((LinearLayout) findViewById(R.id.AdressBlock)).setVisibility(0);
     }
     
+    
     public void goToMapView(View view) {
-    	Intent intent = new Intent(HomeActivity.this , MapViewActivity.class);
-    	HomeActivity.this.startActivity(intent);
+    	Intent intent = new Intent(HomeActivity.this , TabResultsActivity.class);
+    	if(view.getId() == R.id.buttonByGeolocalisation)
+    	{
+    		intent.putExtra("LocationWay", "ByGeolocalisation");
+    		HomeActivity.this.startActivity(intent);
+    	}
+    	else
+    	{
+    		Editable adresse = ((EditText) findViewById(R.id.editTextAdress)).getText();
+    		if(adresse != null && adresse.length() > 5)
+    		{
+	    		intent.putExtra("LocationWay", adresse.toString());
+	    		HomeActivity.this.startActivity(intent);
+    		}
+    	}
+    	
     }
 }

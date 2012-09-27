@@ -4,5 +4,5 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:clickable="true"
-    android:apiKey="0Dd0AmexCa6dkfBTuYlBnnFX0N2iX7VV15IfEbw"
+    android:apiKey="@string/googleApiKey"
 />

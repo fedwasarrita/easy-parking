@@ -1,26 +1,28 @@
 <resources>
-
     <string name="app_name">Easy Parking</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_home">HomeActivity</string>
-    <string name="home_seek_place_label">"Je cherche une place : "</string>
+    <string name="title_activity_map_view">MapViewActivity</string>
+    <string name="title_activity_place_details">PlaceDetailsActivity</string>
+    <string name="title_activity_list_results">ListResultsActivity</string>
+    <string name="title_activity_tab_results">TabResultsActivity</string>
+    <string name="home_seek_place_label">Je cherche une place : </string>
     <string name="home_free_label">gratuite</string>
     <string name="home_not_free_label">payante</string>
     <string name="home_handicap_label">accessible handicapée</string>
     <string name="home_secure_label">sécurisée</string>
-    <string name="title_activity_map_view">MapViewActivity</string>
-    <string name="title_activity_place_details">PlaceDetailsActivity</string>
-    <string name="home_search_label">Go</string>
+	<string name="home_search_label">Go</string>
     <string name="home_adress_label">Adresse :</string>
     <string name="home_Geolocalisation_label">Autour de moi</string>
     <string name="home_away_label">Aller à </string>
     <string name="home_perimetre_label">Périmètre :</string>
-    
-    <string name="title_activity_list_results">ListResultsActivity</string>
-     <string name="detail_title_label">Informations sur l emplacement</string>
-     <string name="detail_localisation_label">localisation</string>
-     <string name="detail_contrainte_horaire_label">contraintes horaires</string>
-     <string name="detail_contrainte_part_label">contraintes particulières</string>      
-     <string name="detail_type_label">type</string>
+    <string name="detail_title_label">Informations sur l emplacement</string>
+    <string name="detail_localisation_label">localisation</string>
+    <string name="detail_contrainte_horaire_label">contraintes horaires</string>
+    <string name="detail_contrainte_part_label">contraintes particulières</string>      
+    <string name="detail_type_label">type</string>
+    <string name="application_locationWay_label">LocationWay</string>
+    <string name="application_locationMode_adress_label">ByAdress</string>
+    <string name="application_locationMode_geolocalisation_label">ByGeolocalisation</string>
 </resources>

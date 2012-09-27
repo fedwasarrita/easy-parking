@@ -1,13 +1,18 @@
 package com.easy_parking;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import com.google.android.maps.GeoPoint;
+import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
+import com.model.SitesOverlay;
 
 import android.location.Address;
 import android.location.Geocoder;
@@ -17,60 +22,90 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 
 public class MapViewActivity extends MapActivity {
 
+	MapView mapView;
+	MapController mapController;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_view);
-        final MapView mp = (MapView) findViewById(R.id.mapview);
-        mp.setBuiltInZoomControls(true);
-        MapController m = mp.getController();
-        
+        mapView = (MapView) findViewById(R.id.mapview);
+        mapView.setBuiltInZoomControls(true);
+        mapController = mapView.getController();
+        Intent currentIntent = getIntent();
+        if (currentIntent.getStringExtra("LocationWay").equals("ByGeolocalisation"))
+        {
+        	SetCursorByGeolocalisation();
+        }
+        else
+        {
+        	SetCursorByAdresse(getIntent().getStringExtra("LocationWay"));
+        }
+    }
+
+    public void SetCursorByGeolocalisation(){
+    	LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
+        // Define a listener that responds to location updates
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+              // Called when a new location is found by the network location provider.
+              makeUseOfNewLocation(location);
+            }
+
+            private void makeUseOfNewLocation(Location location) {
+				Double latitude = location.getLatitude() * 1000000;
+				Double longitude  = location.getLongitude() * 1000000;
+				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
+				mapController.setCenter(origine);
+				OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
+				SitesOverlay s = new SitesOverlay(marker);
+				s.addNewOverlay(o);
+				mapView.getOverlays().clear();
+				mapView.getOverlays().add(s);
+			}
+
+			public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+          };
+
+          // Register the listener with the Location Manager to receive location updates
+          lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+    }
+    
+    public void SetCursorByAdresse(String adresse){
         Geocoder geo = new Geocoder(this,Locale.getDefault());
         try 
         {
-			List<Address> listAdress = geo.getFromLocationName("Rue du port, lille", 1);
+			List<Address> listAdress = geo.getFromLocationName(adresse, 1);
 			Address location = listAdress.get(0);
-			m.setCenter(new GeoPoint((int)location.getLatitude(),(int)location.getLongitude()));
+			Double latitude = location.getLatitude() * 1000000;
+			Double longitude  = location.getLongitude() * 1000000;
+			GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
+			mapController.setCenter(origine);
+			mapController.setZoom(16);
+			OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+			Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
+			SitesOverlay s = new SitesOverlay(marker);
+			s.addNewOverlay(o);
+			mapView.getOverlays().clear();
+			mapView.getOverlays().add(s);
 		} 
         catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        //GEOLOCALISATION
-        //
-//        LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
-//        // Define a listener that responds to location updates
-//        LocationListener locationListener = new LocationListener() {
-//            public void onLocationChanged(Location location) {
-//              // Called when a new location is found by the network location provider.
-//              makeUseOfNewLocation(location);
-//            }
-//
-//            private void makeUseOfNewLocation(Location location) {
-//				// TODO Auto-generated method stub
-//				MapController m = mp.getController();
-//				
-//				m.setCenter(new GeoPoint((int)location.getLatitude(),(int)location.getLongitude()));
-//				
-//			}
-//
-//			public void onStatusChanged(String provider, int status, Bundle extras) {}
-//
-//            public void onProviderEnabled(String provider) {}
-//
-//            public void onProviderDisabled(String provider) {}
-//          };
-//
-//          // Register the listener with the Location Manager to receive location updates
-//          lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-        
     }
-
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_map_view, menu);
