@@ -1,7 +1,9 @@
 package com.easy_parking;
 
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -24,5 +26,10 @@ public class HomeActivity extends Activity {
     
     public void showAdressBlock(View view) {
         ((LinearLayout) findViewById(R.id.AdressBlock)).setVisibility(0);
+    }
+    
+    public void goToMapView(View view) {
+    	Intent intent = new Intent(HomeActivity.this , MapViewActivity.class);
+    	HomeActivity.this.startActivity(intent);
     }
 }
