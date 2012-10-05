@@ -12,7 +12,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.model.SitesOverlay;
+import com.model.AO.SitesOverlay;
 
 import android.location.Address;
 import android.location.Geocoder;
