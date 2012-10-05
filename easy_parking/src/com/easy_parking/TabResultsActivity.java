@@ -22,7 +22,6 @@ public class TabResultsActivity extends TabActivity {
         // setting Title and Icon for the Tab
         mapSpec.setIndicator("Carte", getResources().getDrawable(R.drawable.ic_action_search));
         Intent mapIntent = new Intent(this, MapViewActivity.class);
-        mapIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
         mapSpec.setContent(mapIntent);
  
         // Tab for the List
@@ -30,7 +29,6 @@ public class TabResultsActivity extends TabActivity {
         // setting Title and Icon for the Tab
         listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_launcher));
         Intent listIntent = new Intent(this, ListResultsActivity.class);
-        listIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
         listSpec.setContent(listIntent);
  
         // Adding all TabSpec to TabHost
