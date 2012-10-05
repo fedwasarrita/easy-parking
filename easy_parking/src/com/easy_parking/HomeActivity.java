@@ -10,14 +10,49 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 public class HomeActivity extends Activity {
+	
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final int seekBarStepSize = Integer.parseInt(getString(R.string.home_perimetre_step));
+    	final int seekBarMinValue = Integer.parseInt(getString(R.string.home_perimetre_min));
         setContentView(R.layout.activity_home);
-        Button btnByAdress = (Button) findViewById(R.id.buttonByAdress);
+        SeekBar s = (SeekBar) findViewById(R.id.seekBarPerimetre);
+        ((TextView)findViewById(R.id.TextViewPerimetreValue)).setText("" + s.getProgress() +"m");
+        s.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+			
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress,
+					boolean fromUser) {
+				// TODO Auto-generated method stub
+				if(progress< seekBarMinValue)
+				{
+					progress = seekBarMinValue;
+				}
+				progress= ((int)Math.round(progress/seekBarStepSize))*seekBarStepSize;
+				seekBar.setProgress(progress);
+				((TextView)findViewById(R.id.TextViewPerimetreValue)).setText("" + progress +"m");
+			}
+		});
     }
 
     @Override
