@@ -17,6 +17,8 @@
     <string name="home_Geolocalisation_label">Autour de moi</string>
     <string name="home_away_label">Aller à </string>
     <string name="home_perimetre_label">Périmètre :</string>
+    <string name="home_perimetre_min">100</string>
+    <string name="home_perimetre_step">50</string>
     <string name="detail_title_label">Informations sur l emplacement</string>
     <string name="detail_localisation_label">localisation</string>
     <string name="detail_contrainte_horaire_label">contraintes horaires</string>
