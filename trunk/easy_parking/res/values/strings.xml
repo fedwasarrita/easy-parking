@@ -27,4 +27,6 @@
     <string name="application_locationWay_label">LocationWay</string>
     <string name="application_locationMode_adress_label">ByAdress</string>
     <string name="application_locationMode_geolocalisation_label">ByGeolocalisation</string>
+    <string name="error_ws">Erreur lors de la récupération des données</string>
+    <string name="details">Détails</string>
 </resources>
