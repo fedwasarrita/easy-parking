@@ -13,7 +13,6 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 import com.model.AO.SitesOverlay;
-import com.model.data.DataProvider;
 
 import android.location.Address;
 import android.location.Geocoder;
@@ -39,15 +38,15 @@ public class MapViewActivity extends MapActivity {
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
-        mapController.setCenter(DataProvider.getOrigine());
-		mapController.setZoom(16);
-		OverlayItem o = new OverlayItem(DataProvider.getOrigine(),"Vous ï¿½tes ici","cool");
-		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
-		SitesOverlay s = new SitesOverlay(marker);
-		s.addNewOverlay(o);
-		mapView.getOverlays().clear();
-		mapView.getOverlays().add(s);
-        
+        Intent currentIntent = getIntent();
+        if (currentIntent.getStringExtra("LocationWay").equals("ByGeolocalisation"))
+        {
+        	SetCursorByGeolocalisation();
+        }
+        else
+        {
+        	SetCursorByAdresse(getIntent().getStringExtra("LocationWay"));
+        }
     }
 
     public void SetCursorByGeolocalisation(){
@@ -64,7 +63,7 @@ public class MapViewActivity extends MapActivity {
 				Double longitude  = location.getLongitude() * 1000000;
 				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 				mapController.setCenter(origine);
-				OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
+				OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
 				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 				SitesOverlay s = new SitesOverlay(marker);
 				s.addNewOverlay(o);
@@ -94,7 +93,7 @@ public class MapViewActivity extends MapActivity {
 			GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 			mapController.setCenter(origine);
 			mapController.setZoom(16);
-			OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
+			OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
 			Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 			SitesOverlay s = new SitesOverlay(marker);
 			s.addNewOverlay(o);
