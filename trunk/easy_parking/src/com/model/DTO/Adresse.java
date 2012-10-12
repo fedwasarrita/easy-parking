@@ -1,9 +1,22 @@
 package com.model.DTO;
 
 public class Adresse {
+	
 	private String adresse;
 	private String ville;
 	private String codePostal;
+	
+	
+	public Adresse(String rue,String ville,String codePostal){
+		this.adresse=rue;
+		this.ville=ville;
+		this.codePostal=codePostal;
+	}
+	
+	public Adresse(){
+	
+	}
+	
 	public String getAdresse() {
 		return adresse;
 	}

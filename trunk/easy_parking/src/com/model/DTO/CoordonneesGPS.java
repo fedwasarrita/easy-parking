@@ -1,8 +1,19 @@
 package com.model.DTO;
 
 public class CoordonneesGPS {
+	
 	private Double latitude;
 	private Double longitude;
+	
+	
+	public CoordonneesGPS(Double latitude,Double longitude){
+		this.latitude=latitude;
+		this.longitude=longitude;
+	}
+	public CoordonneesGPS(){
+
+	}
+	
 	public Double getLatitude() {
 		return latitude;
 	}
