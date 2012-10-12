@@ -80,41 +80,7 @@ public class HomeActivity extends Activity {
     	Intent intent = new Intent(HomeActivity.this , TabResultsActivity.class);
     	if(view.getId() == R.id.buttonByGeolocalisation)
     	{
-    		LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
-    		// Define a listener that responds to location updates
-            LocationListener locationListener = new LocationListener() {
-                public void onLocationChanged(Location location) {
-                  // Called when a new location is found by the network location provider.
-                  makeUseOfNewLocation(location);
-                }
-
-                private void makeUseOfNewLocation(Location location) {
-    				Double latitude = location.getLatitude() * 1000000;
-    				Double longitude  = location.getLongitude() * 1000000;
-    				DataProvider.setOrigine( new GeoPoint(latitude.intValue(),longitude.intValue()));
-//    				mapController.setCenter(origine);
-//    				OverlayItem o = new OverlayItem(origine,"Vous �tes ici","cool");
-//    				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
-//    				SitesOverlay s = new SitesOverlay(marker);
-//    				s.addNewOverlay(o);
-//    				mapView.getOverlays().clear();
-//    				mapView.getOverlays().add(s);
-    			}
-
-    			public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-                public void onProviderEnabled(String provider) {}
-
-                public void onProviderDisabled(String provider) {}
-              };
-
-            // Register the listener with the Location Manager to receive location updates
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-            while(!DataProvider.available)
-            {
-            	
-            }
-            //TODO appel WS
+    		intent.putExtra("LocationWay", "ByGeolocalisation");
     		HomeActivity.this.startActivity(intent);
     	}
     	else
@@ -122,10 +88,7 @@ public class HomeActivity extends Activity {
     		Editable adresse = ((EditText) findViewById(R.id.editTextAdress)).getText();
     		if(adresse != null && adresse.length() > 5)
     		{
-    			PlaceBusiness placeBusiness = new PlaceBusiness();
-    			Geocoder geo = new Geocoder(this, Locale.getDefault());
-    			DataProvider.setOrigine(placeBusiness.GetPositionByAdress(adresse.toString(), geo));
-    			//TODO appel WS
+	    		intent.putExtra("LocationWay", adresse.toString());
 	    		HomeActivity.this.startActivity(intent);
     		}
     	}
