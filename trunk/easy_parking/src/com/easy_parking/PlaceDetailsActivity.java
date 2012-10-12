@@ -17,4 +17,7 @@ public class PlaceDetailsActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_place_details, menu);
         return true;
     }
+    
+    
+    
 }
