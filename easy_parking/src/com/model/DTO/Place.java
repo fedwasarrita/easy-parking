@@ -1,8 +1,10 @@
 package com.model.DTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Place {
+	
 	private int idPlace;
 	private Adresse adresse;
 	private CoordonneesGPS coordonneesGPS;
@@ -11,8 +13,15 @@ public class Place {
 	private boolean handicapee;
 	private boolean securisee;
 	private String typePlace;
-	private ArrayList<Contrainte> contraintes;
+	private List<Contrainte> contraintes;
 	private String tarif;
+	
+	
+	public Place(){
+		this.contraintes=new ArrayList<Contrainte>();
+	}
+	
+	
 	public int getIdPlace() {
 		return idPlace;
 	}
@@ -61,10 +70,10 @@ public class Place {
 	public void setTypePlace(String typePlace) {
 		this.typePlace = typePlace;
 	}
-	public ArrayList<Contrainte> getContraintes() {
+	public List<Contrainte> getContraintes() {
 		return contraintes;
 	}
-	public void setContraintes(ArrayList<Contrainte> contraintes) {
+	public void setContraintes(List<Contrainte> contraintes) {
 		this.contraintes = contraintes;
 	}
 	public String getTarif() {
