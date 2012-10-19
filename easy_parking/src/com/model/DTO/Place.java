@@ -1,9 +1,10 @@
 package com.model.DTO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Place {
+public class Place implements Serializable{
 	
 	private int idPlace;
 	private Adresse adresse;

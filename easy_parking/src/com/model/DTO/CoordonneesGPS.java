@@ -1,6 +1,8 @@
 package com.model.DTO;
 
-public class CoordonneesGPS {
+import java.io.Serializable;
+
+public class CoordonneesGPS  implements Serializable{
 	
 	private Double latitude;
 	private Double longitude;

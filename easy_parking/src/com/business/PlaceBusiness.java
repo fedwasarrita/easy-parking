@@ -14,13 +14,15 @@ import android.location.LocationManager;
 import com.easy_parking.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
+import com.model.AO.SearchForm;
 import com.model.AO.SitesOverlay;
 import android.location.Location;
 import android.os.Bundle;
 
 public class PlaceBusiness {
 
-	public void GetPositionByAdress(String adresse, Geocoder geo){
+	public void GetPlacesByPosition(SearchForm form){
+			//TODO call the Data Provider
 			
 	}
 }

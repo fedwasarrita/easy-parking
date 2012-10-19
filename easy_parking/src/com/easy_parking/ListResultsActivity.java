@@ -4,20 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 import com.model.DTO.Adresse;
 import com.model.DTO.Place;
 import com.model.adapters.PlaceAdapter;
 
 public class ListResultsActivity extends ListActivity {
+	
+	private final ArrayList<Place> m_places = new ArrayList<Place>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_results);
-        ArrayList<Place> m_places = new ArrayList<Place>();
         Place p1 = new Place();
         p1.setGratuite(false);
         p1.setAdresse(new Adresse());
@@ -50,6 +56,17 @@ public class ListResultsActivity extends ListActivity {
         m_places.add(p3);
         m_places.add(p4);
         setListAdapter(new PlaceAdapter(this, R.layout.row, m_places));
+        
+        ListView list = this.getListView();
+        list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent intent = new Intent(ListResultsActivity.this , PlaceDetailsActivity.class);
+				intent.putExtra("Place",m_places.get(arg2));
+				ListResultsActivity.this.startActivity(intent);
+			}
+        });
     }
 
     @Override
