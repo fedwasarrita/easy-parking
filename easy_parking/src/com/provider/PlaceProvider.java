@@ -8,6 +8,7 @@ import com.model.DAO.PlaceDAO;
 import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DTO.CoordonneesGPS;
 import com.model.DTO.Place;
+import com.model.mappers.PlaceMapper;
 import com.service.PlaceWSService;
 
 public class PlaceProvider {
@@ -29,18 +30,8 @@ public class PlaceProvider {
 		List<PlaceDAO> vListPlaceDao = vResponse.getPlaces();
 		for(PlaceDAO vPlaceDao : vListPlaceDao)
 		{
-			Place vPlace = new Place();
-			CoordonneesGPS coord = new CoordonneesGPS(vPlaceDao.getLatitude(), vPlaceDao.getLongitude());
-			vPlace.setCoordonneesGPS(coord);
-			vPlace.setGratuite(vPlaceDao.getIsFree());
-			vPlace.setLibre(true);
-			vPlace.setHandicapee(vPlaceDao.getIsHandicap());
-			vPlace.setSecurisee(vPlaceDao.getIsSecured());
-			
-			vListPlace.add(vPlace);
+			vListPlace.add(PlaceMapper.MapPlaceDAOToDTO(vPlaceDao));
 		}
-		
-		
 		return vListPlace;
 	}
 }
