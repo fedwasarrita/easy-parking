@@ -13,6 +13,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import com.google.gson.Gson;
 import com.model.AO.EasyException;
+import com.model.AO.SearchForm;
 import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DTO.Place;
 import com.network.MyHttpClient;
@@ -36,19 +37,19 @@ public class PlaceWSService{
 	}
 	
 
-	public ResponseListPlaceDAO getListPlace() throws EasyException{
+	public ResponseListPlaceDAO getListPlace(SearchForm sForm) throws EasyException{
 		ResponseListPlaceDAO response = null;
 		try{
 			//initialisation des paramètres à envoyé
 			List<NameValuePair> postParameters = new ArrayList<NameValuePair>();	
 			
 			postParameters.add(new BasicNameValuePair("method","getListPlace"));
-			postParameters.add(new BasicNameValuePair("lat","0"));
-			postParameters.add(new BasicNameValuePair("long","0"));
-			postParameters.add(new BasicNameValuePair("peri","10"));
-			postParameters.add(new BasicNameValuePair("isFree","1"));
-			postParameters.add(new BasicNameValuePair("isHandicap","1"));
-			postParameters.add(new BasicNameValuePair("isSecured","1"));
+			postParameters.add(new BasicNameValuePair("lat",sForm.getLatitude().toString()));
+			postParameters.add(new BasicNameValuePair("long",sForm.getLongitude().toString()));
+			postParameters.add(new BasicNameValuePair("peri",sForm.getPerimetre().toString()));
+			postParameters.add(new BasicNameValuePair("typePlace",sForm.getTypePlace().getValue()));
+			postParameters.add(new BasicNameValuePair("isHandicap",sForm.getIsHandicapee().toString()));
+			postParameters.add(new BasicNameValuePair("isSecured",sForm.getIsSecurisee().toString()));
 			
 			String json = this.client.post(Paths.ROOT_URL, postParameters);
 			
