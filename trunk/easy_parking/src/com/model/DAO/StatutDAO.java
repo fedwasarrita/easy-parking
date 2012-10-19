@@ -5,6 +5,10 @@ public class StatutDAO {
 	private Boolean isSuccess;
 	private String message;
 	
+	public StatutDAO() {
+		// no args
+	}
+	
     public Boolean getIsSuccess() {
 		return isSuccess;
 	}

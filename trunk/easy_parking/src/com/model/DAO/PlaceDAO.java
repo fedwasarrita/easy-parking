@@ -2,11 +2,15 @@ package com.model.DAO;
 
 public class PlaceDAO {
 
-	public double latitude;
-    public double longitude;
-    public Boolean isFree;
-    public Boolean isHandicap;
-    public Boolean isSecured;
+	private double latitude;
+    private double longitude;
+    private Boolean isFree;
+    private Boolean isHandicap;
+    private Boolean isSecured;
+    
+    public PlaceDAO() {
+		// no args
+	}
     
 	public double getLatitude() {
 		return latitude;

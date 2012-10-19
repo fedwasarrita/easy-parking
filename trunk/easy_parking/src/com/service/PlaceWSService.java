@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
 
-import com.easy_parking.R;
+import com.google.gson.Gson;
 import com.model.AO.EasyException;
+import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DTO.Place;
 import com.network.MyHttpClient;
 import com.utils.Paths;
@@ -38,8 +36,8 @@ public class PlaceWSService{
 	}
 	
 
-	public ArrayList<Place> getListPlace() throws EasyException{
-		
+	public ResponseListPlaceDAO getListPlace() throws EasyException{
+		ResponseListPlaceDAO response = null;
 		try{
 			//initialisation des paramètres à envoyé
 			List<NameValuePair> postParameters = new ArrayList<NameValuePair>();	
@@ -54,15 +52,26 @@ public class PlaceWSService{
 			
 			String json = this.client.post(Paths.ROOT_URL, postParameters);
 			
-			JSONObject vJsonObj = new JSONObject(json);
+			Gson vJsonObj = new Gson();
+			response = vJsonObj.fromJson(json, ResponseListPlaceDAO.class);
 			
-			
+			//tester response et statut
+			//TODO : gérer les messages d'erreurs internationalisés
+			if(response == null)
+			{
+				throw new EasyException("Echec lors du chargement des données");
+			}
+			if(!response.getStatut().getIsSuccess())
+			{
+				throw new EasyException("Echec lors du chargement des données");
+			}
 		}
 		catch(Exception e)
 		{
-			//throw new EasyException(getString(R.string.error_ws));
-		}
-		return null;
+			//TODO : gérer les messages d'erreurs internationalisés
+			throw new EasyException("Echec lors du chargement des données");
+	}
+		return response;
 	}
 
 	public Place getPlace(){
