@@ -1,28 +1,21 @@
 package com.easy_parking;
 
 
-import java.util.Locale;
 
-import com.business.PlaceBusiness;
-import com.google.android.maps.GeoPoint;
-import com.model.data.DataProvider;
-
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import com.model.AO.SearchForm;
 
 public class HomeActivity extends Activity {
 	
@@ -78,13 +71,35 @@ public class HomeActivity extends Activity {
     
     public void goToMapView(View view) {
     	Intent intent = new Intent(HomeActivity.this , TabResultsActivity.class);
-    	if(view.getId() == R.id.buttonByGeolocalisation)
+    	//Fill out the searching form
+    	SearchForm search= new SearchForm();
+    	 CheckBox checkBox=(CheckBox)findViewById(R.id.checkBoxFree);
+    	 search.setGratuite(checkBox.isChecked());
+    	 
+    	 checkBox=(CheckBox)findViewById(R.id.checkBoxNoFree);
+    	 search.setPayant(checkBox.isChecked());
+    	
+    	 checkBox=(CheckBox)findViewById(R.id.checkBoxHandicap);
+    	 search.setHandicapee(checkBox.isChecked());
+    	 
+    	 checkBox=(CheckBox)findViewById(R.id.checkBoxSecure);
+    	 search.setSecurisee(checkBox.isChecked());
+    	 
+    	 SeekBar perimetreBar=(SeekBar) findViewById(R.id.seekBarPerimetre);
+    	 search.setPerimetre(perimetreBar.getProgress());
+    	 
+    	 intent.putExtra("SearchForm",search);
+    	
+    	 if(view.getId() == R.id.buttonByGeolocalisation)
     	{
+
     		intent.putExtra("LocationWay", "ByGeolocalisation");
+    		
+             
     		HomeActivity.this.startActivity(intent);
     	}
     	else
-    	{
+    		{
     		Editable adresse = ((EditText) findViewById(R.id.editTextAdress)).getText();
     		if(adresse != null && adresse.length() > 5)
     		{
@@ -93,4 +108,5 @@ public class HomeActivity extends Activity {
     		}
     	}
     }
+
 }
