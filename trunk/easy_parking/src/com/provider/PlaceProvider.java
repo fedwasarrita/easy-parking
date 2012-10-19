@@ -9,9 +9,21 @@ import com.model.DAO.PlaceDAO;
 import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DTO.Place;
 import com.model.mappers.PlaceMapper;
+import com.network.MyHttpClient;
 import com.service.PlaceWSService;
 
 public class PlaceProvider {
+	
+	public static PlaceProvider instance;
+	
+	
+	public static PlaceProvider getInstance(){
+		if (instance == null){
+			instance = new PlaceProvider();
+		}
+		return instance;
+	}
+
 
 	public static List<Place> GetAllPlaces(SearchForm sForm) throws EasyException{
 		

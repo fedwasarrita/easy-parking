@@ -14,6 +14,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.model.AO.SearchForm;
+import com.model.AO.TypePlace;
 
 public class HomeActivity extends Activity {
 	
@@ -71,17 +72,24 @@ public class HomeActivity extends Activity {
     	Intent intent = new Intent(HomeActivity.this , TabResultsActivity.class);
     	//Fill out the searching form
     	SearchForm search= new SearchForm();
-    	 CheckBox checkBox=(CheckBox)findViewById(R.id.checkBoxFree);
-    	 search.setGratuite(checkBox.isChecked());
-    	 
-    	 checkBox=(CheckBox)findViewById(R.id.checkBoxNoFree);
-    	 search.setPayant(checkBox.isChecked());
+    	if(((CheckBox)findViewById(R.id.checkBoxFree)).isChecked() && ((CheckBox)findViewById(R.id.checkBoxNoFree)).isChecked())
+    	{
+    		search.setTypePlace(TypePlace.ALL);
+    	}
+    	else if(((CheckBox)findViewById(R.id.checkBoxFree)).isChecked())
+    	{
+    		search.setTypePlace(TypePlace.FREE);
+    	}
+    	else
+    	{
+    		search.setTypePlace(TypePlace.PAYING);
+    	}
     	
-    	 checkBox=(CheckBox)findViewById(R.id.checkBoxHandicap);
-    	 search.setHandicapee(checkBox.isChecked());
+    	 CheckBox checkBox=(CheckBox)findViewById(R.id.checkBoxHandicap);
+    	 search.setIsHandicapee(checkBox.isChecked());
     	 
     	 checkBox=(CheckBox)findViewById(R.id.checkBoxSecure);
-    	 search.setSecurisee(checkBox.isChecked());
+    	 search.setIsSecurisee(checkBox.isChecked());
     	 
     	 SeekBar perimetreBar=(SeekBar) findViewById(R.id.seekBarPerimetre);
     	 search.setPerimetre(perimetreBar.getProgress());
