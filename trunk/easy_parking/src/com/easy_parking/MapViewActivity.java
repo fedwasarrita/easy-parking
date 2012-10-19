@@ -65,7 +65,7 @@ public class MapViewActivity extends MapActivity {
 				Double longitude  = location.getLongitude() * 1000000;
 				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 				mapController.setCenter(origine);
-				OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
+				OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
 				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 				SitesOverlay s = new SitesOverlay(marker);
 				s.addNewOverlay(o);
@@ -74,7 +74,7 @@ public class MapViewActivity extends MapActivity {
 				
 				//Add geo informations to SearchForm
 				Intent currentIntent=getIntent();
-				searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchName");
+				searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchForm");
 				searchForm.setLatitude(latitude);
 				searchForm.setLongitude(longitude);
 				currentIntent.putExtra("SearchForm", searchForm);
