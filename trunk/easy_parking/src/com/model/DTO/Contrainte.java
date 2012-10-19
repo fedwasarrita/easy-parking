@@ -1,6 +1,8 @@
 package com.model.DTO;
 
-public class Contrainte {
+import java.io.Serializable;
+
+public class Contrainte  implements Serializable{
 	
 	private String typeContrainte;
 	private String libelle;

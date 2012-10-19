@@ -1,6 +1,8 @@
 package com.model.DTO;
 
-public class Adresse {
+import java.io.Serializable;
+
+public class Adresse  implements Serializable{
 	
 	private String adresse;
 	private String ville;
