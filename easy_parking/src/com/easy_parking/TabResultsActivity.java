@@ -1,5 +1,7 @@
 package com.easy_parking;
 
+import com.model.AO.SearchForm;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.TabActivity;
@@ -20,9 +22,13 @@ public class TabResultsActivity extends TabActivity {
         // Tab for MapView
         TabSpec mapSpec = tabHost.newTabSpec("Carte");
         // setting Title and Icon for the Tab
+        Intent tempIntent=this.getIntent();
+        SearchForm searchF= (SearchForm)tempIntent.getSerializableExtra("SearchForm");
+        
         mapSpec.setIndicator("Carte", getResources().getDrawable(R.drawable.ic_action_search));
         Intent mapIntent = new Intent(this, MapViewActivity.class);
         mapIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
+        mapIntent.putExtra("SearchForm", searchF);
         mapSpec.setContent(mapIntent);
  
         // Tab for the List
@@ -31,6 +37,7 @@ public class TabResultsActivity extends TabActivity {
         listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_launcher));
         Intent listIntent = new Intent(this, ListResultsActivity.class);
         listIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
+        listIntent.putExtra("SearchForm", searchF);
         listSpec.setContent(listIntent);
  
         // Adding all TabSpec to TabHost
