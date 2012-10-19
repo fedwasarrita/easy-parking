@@ -12,6 +12,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.model.AO.SearchForm;
 import com.model.AO.SitesOverlay;
 
 import android.location.Address;
@@ -30,6 +31,7 @@ public class MapViewActivity extends MapActivity {
 
 	MapView mapView;
 	MapController mapController;
+	SearchForm searchForm;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class MapViewActivity extends MapActivity {
     }
 
     public void SetCursorByGeolocalisation(){
-    	LocationManager lm = (LocationManager) getSystemService(this.LOCATION_SERVICE);
+    	LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         // Define a listener that responds to location updates
         LocationListener locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
@@ -63,12 +65,19 @@ public class MapViewActivity extends MapActivity {
 				Double longitude  = location.getLongitude() * 1000000;
 				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 				mapController.setCenter(origine);
-				OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+				OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
 				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 				SitesOverlay s = new SitesOverlay(marker);
 				s.addNewOverlay(o);
 				mapView.getOverlays().clear();
 				mapView.getOverlays().add(s);
+				
+				//Add geo informations to SearchForm
+				Intent currentIntent=getIntent();
+				searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchName");
+				searchForm.setLatitude(latitude);
+				searchForm.setLongitude(longitude);
+				currentIntent.putExtra("SearchForm", searchForm);
 			}
 
 			public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -93,7 +102,7 @@ public class MapViewActivity extends MapActivity {
 			GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 			mapController.setCenter(origine);
 			mapController.setZoom(16);
-			OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+			OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
 			Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 			SitesOverlay s = new SitesOverlay(marker);
 			s.addNewOverlay(o);
