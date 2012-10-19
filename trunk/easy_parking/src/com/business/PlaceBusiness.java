@@ -20,27 +20,7 @@ import android.os.Bundle;
 
 public class PlaceBusiness {
 
-	public GeoPoint GetPositionByAdress(String adresse, Geocoder geo){
-	        try 
-	        {
-				List<Address> listAdress = geo.getFromLocationName(adresse, 1);
-				Address location = listAdress.get(0);
-				Double latitude = location.getLatitude() * 1000000;
-				Double longitude  = location.getLongitude() * 1000000;
-				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
-				return origine;
-//				mapController.setCenter(origine);
-//				mapController.setZoom(16);
-//				OverlayItem o = new OverlayItem(origine,"Vous �tes ici","cool");
-//				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
-//				SitesOverlay s = new SitesOverlay(marker);
-//				s.addNewOverlay(o);
-//				mapView.getOverlays().clear();
-//				mapView.getOverlays().add(s);
-			} 
-	        catch (IOException e) {
-	        	//TODO
-				return new GeoPoint(1,1);
-			}
+	public void GetPositionByAdress(String adresse, Geocoder geo){
+			
 	}
 }

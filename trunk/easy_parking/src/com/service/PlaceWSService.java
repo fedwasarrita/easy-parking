@@ -60,7 +60,7 @@ public class PlaceWSService{
 		}
 		catch(Exception e)
 		{
-			throw new EasyException(getString(R.string.error_ws));
+			//throw new EasyException(getString(R.string.error_ws));
 		}
 		return null;
 	}

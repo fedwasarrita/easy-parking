@@ -8,6 +8,7 @@ public class Place {
 	private int idPlace;
 	private Adresse adresse;
 	private CoordonneesGPS coordonneesGPS;
+	private int distance;
 	private boolean libre;
 	private boolean gratuite;
 	private boolean handicapee;
@@ -36,6 +37,12 @@ public class Place {
 	}
 	public CoordonneesGPS getCoordonneesGPS() {
 		return coordonneesGPS;
+	}
+	public int getDistance() {
+		return distance;
+	}
+	public void setDistance(int distance) {
+		this.distance = distance;
 	}
 	public void setCoordonneesGPS(CoordonneesGPS coordonneesGPS) {
 		this.coordonneesGPS = coordonneesGPS;

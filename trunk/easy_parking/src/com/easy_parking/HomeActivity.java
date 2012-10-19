@@ -92,8 +92,5 @@ public class HomeActivity extends Activity {
 	    		HomeActivity.this.startActivity(intent);
     		}
     	}
-    	
-    	
-    	
     }
 }
