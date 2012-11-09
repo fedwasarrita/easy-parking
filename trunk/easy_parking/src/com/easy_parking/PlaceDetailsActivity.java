@@ -37,10 +37,10 @@ public class PlaceDetailsActivity extends Activity {
         lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
         lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
         CurrentPlace.setContraintes(lContraintes);
-        CurrentPlace.setHandicapee(false);
+        CurrentPlace.setHandicapee(true);
         CurrentPlace.setIdPlace(1);
         CurrentPlace.setLibre(true);
-        CurrentPlace.setSecurisee(false);
+        CurrentPlace.setSecurisee(true);
         CurrentPlace.setTarif("Gratuit");
         CurrentPlace.setTypePlace("Classique");
         
@@ -64,10 +64,12 @@ public class PlaceDetailsActivity extends Activity {
     	if(CurrentPlace.isHandicapee()){
     		txHandicap.setText(R.string.detail_info_accessH);
     	}
-    	else{
-    		//A revoir pour masquer le message ou le changer
-//    		txHandicap.setText(R.string.detail_info_accessH);
-//    		txHandicap.setVisibility(0);
+    	
+    	//Remplit la donnée sur la sécurisation de la place
+    	TextView txSecurite;
+    	txSecurite = (TextView)findViewById(R.id.textViewSecurisation);
+    	if(CurrentPlace.isSecurisee()){
+    		txSecurite.setText(R.string.detail_info_securisee);
     	}
     	
     	//Remplit le type de place
