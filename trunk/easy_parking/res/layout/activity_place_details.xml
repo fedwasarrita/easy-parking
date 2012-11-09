@@ -53,71 +53,55 @@
             android:layout_below="@+id/localisationTextBlock"
             android:orientation="vertical">
      
-      
-        
         <TextView
-                android:id="@+id/textViewtarif"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="7dp"
-                android:text="@string/detail_info_gratuit" 
-                />
+            android:id="@+id/textViewtarif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp" />
+
         <TextView
-                android:id="@+id/textViewaccessibilite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="7dp"
-                android:text="@string/detail_info_accessH" 
-                />
-        
-        
+            android:id="@+id/textViewaccessibilite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="7dp" />
      
     </LinearLayout>
 
    <LinearLayout
-       android:id="@+id/contrainteParticuliereTextBlock"
+       android:id="@+id/contraintHoraireTextBlock"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
        android:layout_alignParentLeft="true"
-       android:layout_marginBottom="94dp" 
-       android:layout_centerHorizontal="true"
-       android:orientation="vertical">
+       android:layout_below="@+id/informationTextBlock"
+       android:layout_marginTop="21dp" >
 
        <TextView
-           android:id="@+id/detail_contrainteParticuliere_label"
+           android:id="@+id/detail_contrainteHoraire_label"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginLeft="5dp"
            android:layout_marginTop="14dp"
-           android:text="@string/detail_contrainte_part_label"
+           android:text="@string/detail_contrainte_horaire_label"
            android:textSize="18dp"
            android:textStyle="bold" />
-       
-       
-        <TextView
-                android:id="@+id/textViewcontrainteparticuliere"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="7dp"
-                android:text="@string/detail_contrainte_part_reserveeLivraison_label" 
-                />
-       
-       
-       
-       
+
+       <TextView
+           android:id="@+id/txView_contrainte_horaire"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="25dp"
+           android:layout_marginTop="14dp"
+           android:textSize="15dp" />
    </LinearLayout>
 
    <LinearLayout
        android:id="@+id/typeTextBlock"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_above="@+id/contrainteParticuliereTextBlock"
        android:layout_alignParentLeft="true"
-       android:layout_marginBottom="50dp" >
+       android:layout_below="@+id/contraintHoraireTextBlock" >
 
        <TextView
            android:id="@+id/detail_type_label"
@@ -135,40 +119,36 @@
            android:layout_height="wrap_content"
            android:layout_marginLeft="15dp"
            android:layout_marginTop="14dp"
-           android:text="@string/detail_type_souterrain_label"
-            />
-
+           android:text="@string/detail_type_souterrain_label" />
    </LinearLayout>
 
    <LinearLayout
-       android:id="@+id/contraintHoraireTextBlock"
+       android:id="@+id/contrainteParticuliereTextBlock"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:layout_above="@+id/typeTextBlock"
+       android:layout_alignParentBottom="true"
        android:layout_alignParentLeft="true"
-       android:layout_marginBottom="42dp" >
+       android:layout_below="@+id/typeTextBlock"
+       android:layout_marginTop="22dp"
+       android:orientation="vertical" >
 
        <TextView
-           android:id="@+id/detail_contrainteHoraire_label"
+           android:id="@+id/detail_contrainteParticuliere_label"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_marginLeft="5dp"
            android:layout_marginTop="14dp"
-           android:text="@string/detail_contrainte_horaire_label"
+           android:text="@string/detail_contrainte_part_label"
            android:textSize="18dp"
            android:textStyle="bold" />
-       
-        <TextView
-           android:id="@+id/detail_contrainteHoraire_valeure"
+
+       <ListView
+           android:id="@+id/listViewContraintes"
            android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="25dp"
-           android:layout_marginTop="14dp"
-           android:text=" Zone Bleue"
-           android:textSize="15dp"
-            />
-       
-       
+           android:layout_height="127dp"
+           android:layout_gravity="bottom" >
+
+       </ListView>
    </LinearLayout>
 
 </RelativeLayout>
