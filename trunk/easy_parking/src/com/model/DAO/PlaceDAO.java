@@ -2,6 +2,7 @@ package com.model.DAO;
 
 public class PlaceDAO {
 
+	private int idPlace;
 	private double latitude;
     private double longitude;
     private Boolean isFree;
@@ -12,6 +13,14 @@ public class PlaceDAO {
 		// no args
 	}
     
+	public int getIdPlace() {
+		return idPlace;
+	}
+
+	public void setIdPlace(int idPlace) {
+		this.idPlace = idPlace;
+	}
+
 	public double getLatitude() {
 		return latitude;
 	}

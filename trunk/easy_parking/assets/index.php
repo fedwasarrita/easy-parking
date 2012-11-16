@@ -184,3 +184,4 @@ function getPlace($id,$pdo)
 	
 	echo json_encode($json);
 	die();
+}
