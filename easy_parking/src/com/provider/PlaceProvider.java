@@ -7,6 +7,7 @@ import com.model.AO.EasyException;
 import com.model.AO.SearchForm;
 import com.model.DAO.PlaceDAO;
 import com.model.DAO.ResponseListPlaceDAO;
+import com.model.DAO.ResponsePlaceDAO;
 import com.model.DTO.Place;
 import com.model.mappers.PlaceMapper;
 import com.network.MyHttpClient;
@@ -45,5 +46,23 @@ public class PlaceProvider {
 			vListPlace.add(PlaceMapper.MapPlaceDAOToDTO(vPlaceDao));
 		}
 		return vListPlace;
+	}
+	
+	public static Place GetPlace(Integer id) throws EasyException{
+		
+		Place vPlace = new Place();
+		ResponsePlaceDAO vResponse = null;
+		
+		try{
+			vResponse = PlaceWSService.getInstance().getPlace(id);	
+		}
+		catch(Exception e)
+		{
+			throw new EasyException(e.getMessage());
+		}
+		
+		vPlace = PlaceMapper.MapPlaceDAOToDTO(vResponse.getPlace());
+		
+		return vPlace;
 	}
 }
