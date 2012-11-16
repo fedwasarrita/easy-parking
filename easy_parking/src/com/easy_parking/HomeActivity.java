@@ -139,10 +139,9 @@ public class HomeActivity extends Activity {
     		
     		if(!checkDeviceConnectivity()){
     			showConnectionStatus(intent);
+    		}else{
+    			HomeActivity.this.startActivity(intent);
     		}
-    		
-             
-    		//HomeActivity.this.startActivity(intent);
     	}
     	else
     		{
@@ -152,6 +151,8 @@ public class HomeActivity extends Activity {
 	    		intent.putExtra("LocationWay", adresse.toString());
 	    		if(!checkDeviceConnectivity()){
 	    			showConnectionStatus(intent);
+	    		}else{
+	    			HomeActivity.this.startActivity(intent);
 	    		}
 	    		
     		}
