@@ -1,8 +1,14 @@
 package com.easy_parking;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
@@ -130,8 +136,13 @@ public class HomeActivity extends Activity {
 
     		intent.putExtra("LocationWay", "ByGeolocalisation");
     		
+    		
+    		if(!checkDeviceConnectivity()){
+    			showConnectionStatus(intent);
+    		}
+    		
              
-    		HomeActivity.this.startActivity(intent);
+    		//HomeActivity.this.startActivity(intent);
     	}
     	else
     		{
@@ -139,9 +150,61 @@ public class HomeActivity extends Activity {
     		if(adresse != null && adresse.length() > 5)
     		{
 	    		intent.putExtra("LocationWay", adresse.toString());
-	    		HomeActivity.this.startActivity(intent);
+	    		if(!checkDeviceConnectivity()){
+	    			showConnectionStatus(intent);
+	    		}
+	    		
     		}
     	}
     }
+    /*
+	 * Check Internet connection of the device. Only Mobile broadband and wifi
+	 * connection are tested. The WiMax and bluetooth are not checked
+	 */
+	private boolean checkDeviceConnectivity() {
+		ConnectivityManager cm = (ConnectivityManager) ((Context) HomeActivity.this).getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+		if(activeNetwork==null)
+			return false;
+		if (!activeNetwork.isConnected()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	/* Build the Network status pop-up */
+	private void showConnectionStatus(final Intent nextActivity){
+		AlertDialog.Builder builder= new AlertDialog.Builder(this);
+		builder.setCancelable(true);
+		builder.setTitle("Network status");
+		builder.setMessage("You are not connected to internet");
+		builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				//HomeActivity.this.startActivity(nextActivity);
+				
+				
+			}
+		});
+		
+		builder.setNegativeButton("Go to network settings", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// Open android network settings
+				Intent intent = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+				//intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				
+			}
+		});
+		//Create and show the AlertDialog
+		AlertDialog alert=builder.create();
+		alert.show();	
+	}
+	
 
 }
