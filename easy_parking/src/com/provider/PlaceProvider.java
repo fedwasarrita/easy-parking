@@ -14,7 +14,7 @@ import com.service.PlaceWSService;
 
 public class PlaceProvider {
 	
-	public static PlaceProvider instance;
+	private static PlaceProvider instance;
 	
 	
 	public static PlaceProvider getInstance(){
@@ -25,7 +25,7 @@ public class PlaceProvider {
 	}
 
 
-	public static List<Place> GetAllPlaces(SearchForm sForm) throws EasyException{
+	public List<Place> GetAllPlaces(SearchForm sForm) throws EasyException{
 		
 		List<Place> vListPlace = new ArrayList<Place>();
 		ResponseListPlaceDAO vResponse = null;
@@ -38,7 +38,7 @@ public class PlaceProvider {
 			throw new EasyException(e.getMessage());
 		}
 		
-		//mapper les place
+		//mapper les places
 		List<PlaceDAO> vListPlaceDao = vResponse.getPlaces();
 		for(PlaceDAO vPlaceDao : vListPlaceDao)
 		{
