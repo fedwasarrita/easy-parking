@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.business.PlaceBusiness;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
@@ -12,8 +13,11 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.model.AO.EasyException;
 import com.model.AO.SearchForm;
 import com.model.AO.SitesOverlay;
+import com.model.DTO.Place;
+import com.provider.PlaceProvider;
 
 import android.location.Address;
 import android.location.Geocoder;
@@ -50,6 +54,25 @@ public class MapViewActivity extends MapActivity {
         	SetCursorByAdresse(getIntent().getStringExtra("LocationWay"));
         }
     }
+    
+    public void setMarkers(GeoPoint origine, List<Place> places){
+    	List<Overlay> mapOverlays = mapView.getOverlays();
+    	OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
+		SitesOverlay s = new SitesOverlay(marker,this);
+		s.addOverlay(o);
+		if(places != null)
+		{
+			for(Place p : places)
+			{
+				Double latitude = p.getCoordonneesGPS().getLatitude() * 1000000;
+				Double longitude  = p.getCoordonneesGPS().getLongitude() * 1000000;
+				OverlayItem m = new OverlayItem(new GeoPoint(latitude.intValue(),longitude.intValue()),p.getAdresse().getAdresse(),"cool");
+				s.addOverlay(m);
+			}
+		}
+		mapOverlays.add(s);
+    }
 
     public void SetCursorByGeolocalisation(){
     	LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -65,19 +88,14 @@ public class MapViewActivity extends MapActivity {
 				Double longitude  = location.getLongitude() * 1000000;
 				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 				mapController.setCenter(origine);
-				OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
-				Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
-				SitesOverlay s = new SitesOverlay(marker);
-				s.addNewOverlay(o);
-				mapView.getOverlays().clear();
-				mapView.getOverlays().add(s);
 				
 				//Add geo informations to SearchForm
 				Intent currentIntent=getIntent();
 				searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchForm");
 				searchForm.setLatitude(latitude);
 				searchForm.setLongitude(longitude);
-				currentIntent.putExtra("SearchForm", searchForm);
+				searchAllPlace(origine);
+				
 			}
 
 			public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -102,18 +120,35 @@ public class MapViewActivity extends MapActivity {
 			GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
 			mapController.setCenter(origine);
 			mapController.setZoom(16);
-			OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
-			Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
-			SitesOverlay s = new SitesOverlay(marker);
-			s.addNewOverlay(o);
-			mapView.getOverlays().clear();
-			mapView.getOverlays().add(s);
+			
+			//Add geo informations to SearchForm
+			Intent currentIntent=getIntent();
+			searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchForm");
+			searchForm.setLatitude(latitude);
+			searchForm.setLongitude(longitude);
+			searchAllPlace(origine);
+		
 		} 
         catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
+    
+    public void searchAllPlace(GeoPoint origine){
+    	try 
+    	{
+    		PlaceBusiness b= new PlaceBusiness();
+			List<Place> places = b.GetPlacesByPosition(searchForm);
+			setMarkers(origine,places);
+			
+		} 
+    	catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

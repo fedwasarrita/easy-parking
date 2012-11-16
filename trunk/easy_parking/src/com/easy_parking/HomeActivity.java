@@ -7,6 +7,8 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -28,6 +30,33 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
         SeekBar s = (SeekBar) findViewById(R.id.seekBarPerimetre);
         ((TextView)findViewById(R.id.TextViewPerimetreValue)).setText("" + s.getProgress() +"m");
+        
+        //controle pour la checkbox gratuite
+        ((CheckBox)findViewById(R.id.checkBoxFree)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(!((CheckBox)findViewById(R.id.checkBoxNoFree)).isChecked() && !isChecked)
+				{
+					((CheckBox)findViewById(R.id.checkBoxFree)).setChecked(true);
+				}
+			}
+		});
+
+        // controle pour la checkbox payante
+		((CheckBox)findViewById(R.id.checkBoxNoFree)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(!((CheckBox)findViewById(R.id.checkBoxFree)).isChecked() && !isChecked)
+				{
+					((CheckBox)findViewById(R.id.checkBoxNoFree)).setChecked(true);
+				}
+			}
+		});
+        
         s.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
 			@Override
