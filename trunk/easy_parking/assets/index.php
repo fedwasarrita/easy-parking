@@ -5,7 +5,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=easyparking', 'root', '');
 
 if(isset($_POST['method']))
 {
-	//Appel à  la méthode getListePlace
+	//Appel à la méthode getListePlace
 	if($_POST['method'] == 'getListPlace')
 	{
 		if(isset($_POST['long']) && isset($_POST['lat']) && isset($_POST['peri']))
@@ -30,10 +30,10 @@ if(isset($_POST['method']))
 			{
 				$filters['Securise']= (int) $_POST['isSecured'];
 			}
-			getListPlace($_POST['long'],$_POST['lat'], $_POST['peri'],$filters,$pdo)
+			getListPlace($_POST['long'],$_POST['lat'], $_POST['peri'],$filters,$pdo);
 		}
 	}
-	//Appel à  la méthode getPlace
+	//Appel à la méthode getPlace
 	else if($_POST['method'] == 'getPlace')
 	{
 		if(isset($_POST['id']))
@@ -45,7 +45,7 @@ if(isset($_POST['method']))
 }
 
 /**
-* 	MÃ©thode permettant de récupérer la liste des places libres dans un périmètre donnée
+* 	Méthode permettant de récupérer la liste des places libres dans un périmètre donné
 *	@param double $long : la longitude
 *	@param double $lat : la latitude
 *	@param int $peri : le perimètre
@@ -55,22 +55,23 @@ if(isset($_POST['method']))
 
 function getListPlace($lat,$long,$peri,$filters,$pdo)
 {
-	//Calcul du carrée périmètre
+	//Calcul du carré périmètre
 	$d = $peri/1000;
 	//$R = 6371;
 	
 	$latMin =  $lat - $d/111;
 	$latMax = $lat + $d/111;
 	
-	//parce qu'on est en france et que c'est plus facile comme ça
+	//parce qu'on est en france est que c'est plus facile comme ça
 	$longMin = $long - $d/76;
 	$longMax = $long + $d/76;
 		
-	$query = 'SELECT p.idPlace, p.latitude, p.longitude, p.gratuit as isFree, p.handicape as isHandicap, p.securise as isSecured from Place p, Adresse a WHERE p.adresse = a.idAdresse';
+	$query = 'SELECT p.idPlace, p.latitude, p.longitude, p.gratuit as isFree, p.handicape as isHandicap, p.securise as isSecured ';
+	$query .= 'FROM Place p, Adresse a WHERE p.adresse = a.idAdresse';
 	
 	//clause recherche des places libres
 	$query .= ' AND Libre = 1';
-	//Rechere dans le périmètre donnée
+	//Rechere dans le périmètre donné
 	$query .= ' AND (p.latitude BETWEEN '.$latMin.' AND '.$latMax.')';
 	$query .= ' AND (p.longitude BETWEEN '.$longMin.' AND '.$longMax.')';
 	foreach($filters as $key => $filter)
@@ -123,7 +124,7 @@ function getPlace($id,$pdo)
 	$query = 'SELECT p.idPlace as id, p.latitude as latitude, p.longitude as longitude, p.libre as isFree, p.handicape as isHandicap, p.securise as isSecured,';
 	$query .= '	a.Adresse as adresse, a.Ville as ville, a.CodePostal as codePostal,';
 	$query .= ' tp.Libelle as typePlace, ta.tarif as tarif';
-	$query .= ' from place p, typeplace tp, tarif ta, adresse a WHERE IdPlace = '.$id;
+	$query .= ' FROM Place p, TypePlace tp, Tarif ta, Adresse a WHERE IdPlace = '.$id;
 	$query .= ' AND p.adresse = a.idAdresse';
 	$query .= ' AND p.idType = tp.idTypePlace';
 	$query .= ' AND p.idTarif = ta.idTarif';
@@ -156,7 +157,8 @@ function getPlace($id,$pdo)
 			$json['place']['tarif'] = $ligne['tarif'];
 			$contraintes = array();
 			
-			$queryC = 'SELECT c.Libelle as detailContrainte, tc.Type as typeContrainte from contraintePlace as cp, contraintes as c, typeContrainte as tc';
+			$queryC = 'SELECT c.Libelle as detailContrainte, tc.Type as typeContrainte';
+			$queryC .= ' FROM ContraintePlace as cp, Contraintes as c, TypeContrainte as tc';
 			$queryC .= ' WHERE cp.idPlace = '.$id;
 			$queryC .= ' AND cp.idContrainte = c.idContrainte';
 			$queryC .= ' AND c.idTypeContrainte = tc.idTypeContrainte';
@@ -182,4 +184,3 @@ function getPlace($id,$pdo)
 	
 	echo json_encode($json);
 	die();
-}
