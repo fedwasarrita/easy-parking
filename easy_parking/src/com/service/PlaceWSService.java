@@ -39,12 +39,12 @@ public class PlaceWSService{
 			List<NameValuePair> postParameters = new ArrayList<NameValuePair>();	
 			
 			postParameters.add(new BasicNameValuePair("method","getListPlace"));
-			postParameters.add(new BasicNameValuePair("lat",sForm.getLatitude().toString()));
-			postParameters.add(new BasicNameValuePair("long",sForm.getLongitude().toString()));
+			postParameters.add(new BasicNameValuePair("lat",Double.toString(sForm.getLatitude()/1000000)));
+			postParameters.add(new BasicNameValuePair("long",Double.toString(sForm.getLongitude()/1000000)));
 			postParameters.add(new BasicNameValuePair("peri",sForm.getPerimetre().toString()));
 			postParameters.add(new BasicNameValuePair("typePlace",sForm.getTypePlace().getValue()));
-			postParameters.add(new BasicNameValuePair("isHandicap",sForm.getIsHandicapee().toString()));
-			postParameters.add(new BasicNameValuePair("isSecured",sForm.getIsSecurisee().toString()));
+			postParameters.add(new BasicNameValuePair("isHandicap",sForm.getIsHandicapee() ? "1" : "0" ));
+			postParameters.add(new BasicNameValuePair("isSecured",sForm.getIsSecurisee() ? "1" : "0"));
 			
 			String json = this.client.post(Paths.ROOT_URL, postParameters);
 			

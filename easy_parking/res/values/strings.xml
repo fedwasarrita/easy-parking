@@ -41,5 +41,8 @@
     <string name="error_ws">Erreur lors de la récupération des données</string>
     <string name="details">Détails</string>
     <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="legende_title">Légende</string>
+    <string name="legende_selfPosition">Votre position</string>
+    <string name="legende_place">Place</string>
 
 </resources>

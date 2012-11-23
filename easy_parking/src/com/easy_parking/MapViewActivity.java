@@ -29,13 +29,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.PopupWindow;
 
 public class MapViewActivity extends MapActivity {
 
 	MapView mapView;
 	MapController mapController;
 	SearchForm searchForm;
+	PopupWindow pw;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class MapViewActivity extends MapActivity {
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
         Intent currentIntent = getIntent();
+        
         if (currentIntent.getStringExtra("LocationWay").equals("ByGeolocalisation"))
         {
         	SetCursorByGeolocalisation();
@@ -52,6 +61,18 @@ public class MapViewActivity extends MapActivity {
         else
         {
         	SetCursorByAdresse(getIntent().getStringExtra("LocationWay"));
+        }
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_settings:
+            	ShowLegend();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
     
@@ -160,5 +181,24 @@ public class MapViewActivity extends MapActivity {
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public void ShowLegend(){
+		LayoutInflater inflater = (LayoutInflater)
+			       this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			     pw = new PopupWindow(
+			       inflater.inflate(R.layout.legend_popup, null, false),200,200,true);
+
+			    
+			    // The code below assumes that the root container has an id called 'main'
+			    pw.showAtLocation(this.findViewById(R.id.mapview), Gravity.CENTER, 0, 0);
+			    Button close = (Button) findViewById(R.id.button1);
+		     	close.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					pw.dismiss();
+					}
+		     	});
 	}
 }

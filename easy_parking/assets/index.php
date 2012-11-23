@@ -1,7 +1,6 @@
 <?php
 
-$pdo = new PDO('mysql:host=localhost;dbname=easyparking', 'root', '');
-
+$pdo = new PDO('mysql:host=mysql51-69.perso;dbname=courspaeandroi', 'courspaeandroi', 'LLaYq3Ia');
 
 if(isset($_POST['method']))
 {
@@ -30,7 +29,7 @@ if(isset($_POST['method']))
 			{
 				$filters['Securise']= (int) $_POST['isSecured'];
 			}
-			getListPlace($_POST['long'],$_POST['lat'], $_POST['peri'],$filters,$pdo);
+			getListPlace($_POST['lat'],$_POST['long'], $_POST['peri'],$filters,$pdo);
 		}
 	}
 	//Appel à la méthode getPlace
@@ -138,8 +137,7 @@ function getPlace($id,$pdo)
 	
 	try
 	{
-		$results = $pdo->query($query); 
-				
+		$results = $pdo->query($query); 	
 		if($ligne = $results->fetch())
 		{
 			$json['statut']['isSuccess'] = true;
