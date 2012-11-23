@@ -31,7 +31,13 @@ public class PlaceWSService{
 		return instance;
 	}
 	
-
+	/**
+	 * Méthode d'appel au web service afin de récupérer une liste de place
+	 * en fonction des informations saisies dans le formulaire
+	 * @param sForm : le formulaire de recherche
+	 * @return la reponse de la requête au Web Service
+	 * @throws EasyException
+	 */
 	public ResponseListPlaceDAO getListPlace(SearchForm sForm) throws EasyException{
 		ResponseListPlaceDAO response = null;
 		try{
@@ -70,6 +76,13 @@ public class PlaceWSService{
 		return response;
 	}
 
+	/**
+	 * Méthode d'appel au web service afin de récupérer une place
+	 * en fonction de son id
+	 * @param id : l'id de la place
+	 * @return la réponse du Web Service
+	 * @throws EasyException
+	 */
 	public ResponsePlaceDAO getPlace(Integer id) throws EasyException{
 		
 		ResponsePlaceDAO response = null;

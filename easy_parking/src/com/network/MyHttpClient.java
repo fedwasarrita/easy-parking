@@ -49,6 +49,13 @@ public class MyHttpClient {
             return instance;	
     }
 
+    /**
+     * Méthode permettant de générer une requête HTTP en POST 
+     * @param url : l'url de la requête
+     * @param values : list des valeurs à poster
+     * @return la reponse du serveur
+     * @throws IOException
+     */
     public String post(String url, List<NameValuePair> values) throws IOException {
 	
             String retour;

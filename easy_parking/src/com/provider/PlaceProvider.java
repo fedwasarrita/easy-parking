@@ -10,7 +10,6 @@ import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DAO.ResponsePlaceDAO;
 import com.model.DTO.Place;
 import com.model.mappers.PlaceMapper;
-import com.network.MyHttpClient;
 import com.service.PlaceWSService;
 
 public class PlaceProvider {
@@ -26,6 +25,12 @@ public class PlaceProvider {
 	}
 
 
+	/**
+	 * Méthode permettant de récupérer la liste des places via un webservice
+	 * @param sForm : formulaire de recherche
+	 * @return une liste de place
+	 * @throws EasyException
+	 */
 	public List<Place> GetAllPlaces(SearchForm sForm) throws EasyException{
 		
 		List<Place> vListPlace = new ArrayList<Place>();
@@ -48,6 +53,12 @@ public class PlaceProvider {
 		return vListPlace;
 	}
 	
+	/**
+	 * Méthode permettant de récupérer une place via un webservice
+	 * @param id : l'id de la place à récupérer
+	 * @return une place
+	 * @throws EasyException
+	 */
 	public static Place GetPlace(Integer id) throws EasyException{
 		
 		Place vPlace = new Place();
