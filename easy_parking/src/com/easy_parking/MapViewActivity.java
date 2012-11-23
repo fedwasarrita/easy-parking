@@ -18,7 +18,9 @@ import com.model.AO.SearchForm;
 import com.model.AO.SitesOverlay;
 import com.model.DTO.Place;
 import com.provider.PlaceProvider;
+import com.utils.MapUtils;
 
+import android.R.integer;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -44,6 +46,7 @@ public class MapViewActivity extends MapActivity {
 	MapController mapController;
 	SearchForm searchForm;
 	PopupWindow pw;
+	Boolean isMarketsSet = false;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,15 +80,20 @@ public class MapViewActivity extends MapActivity {
     }
     
     public void setMarkers(GeoPoint origine, List<Place> places){
+    	
     	List<Overlay> mapOverlays = mapView.getOverlays();
     	OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
 		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 		SitesOverlay s = new SitesOverlay(marker,this);
 		s.addOverlay(o);
+		
 		if(places != null)
 		{
 			for(Place p : places)
 			{
+				float[] results = new float[20];
+				Location.distanceBetween(origine.getLatitudeE6(), origine.getLongitudeE6(), p.getCoordonneesGPS().getLatitude()*1000000, p.getCoordonneesGPS().getLongitude()*1000000, results);
+				p.setDistance((int) (results[0] / 100000));
 				Double latitude = p.getCoordonneesGPS().getLatitude() * 1000000;
 				Double longitude  = p.getCoordonneesGPS().getLongitude() * 1000000;
 				OverlayItem m = new OverlayItem(new GeoPoint(latitude.intValue(),longitude.intValue()),p.getAdresse().getAdresse(),"cool");
@@ -93,6 +101,8 @@ public class MapViewActivity extends MapActivity {
 			}
 		}
 		mapOverlays.add(s);
+		PlaceProvider.listPlaces = places;
+
     }
 
     public void SetCursorByGeolocalisation(){
@@ -105,17 +115,21 @@ public class MapViewActivity extends MapActivity {
             }
 
             private void makeUseOfNewLocation(Location location) {
-				Double latitude = location.getLatitude() * 1000000;
-				Double longitude  = location.getLongitude() * 1000000;
-				GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
-				mapController.setCenter(origine);
-				
-				//Add geo informations to SearchForm
-				Intent currentIntent=getIntent();
-				searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchForm");
-				searchForm.setLatitude(latitude);
-				searchForm.setLongitude(longitude);
-				searchAllPlace(origine);
+            	if(!isMarketsSet)
+            	{
+					Double latitude = location.getLatitude() * 1000000;
+					Double longitude  = location.getLongitude() * 1000000;
+					GeoPoint origine = new GeoPoint(latitude.intValue(),longitude.intValue());
+					mapController.setCenter(origine);
+					
+					//Add geo informations to SearchForm
+					Intent currentIntent=getIntent();
+					searchForm=(SearchForm)currentIntent.getSerializableExtra("SearchForm");
+					searchForm.setLatitude(latitude);
+					searchForm.setLongitude(longitude);
+					searchAllPlace(origine);
+					isMarketsSet = true;
+            	}
 				
 			}
 

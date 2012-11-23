@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.model.DTO.Adresse;
 import com.model.DTO.Place;
 import com.model.adapters.PlaceAdapter;
+import com.provider.PlaceProvider;
 
 public class ListResultsActivity extends ListActivity {
 	
@@ -55,7 +56,7 @@ public class ListResultsActivity extends ListActivity {
         m_places.add(p2);
         m_places.add(p3);
         m_places.add(p4);
-        setListAdapter(new PlaceAdapter(this, R.layout.row, m_places));
+        setListAdapter(new PlaceAdapter(this, R.layout.row, (ArrayList<Place>) PlaceProvider.listPlaces));
         
         ListView list = this.getListView();
         list.setOnItemClickListener(new OnItemClickListener() {

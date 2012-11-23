@@ -8,9 +8,9 @@ public class PlaceDAO {
     private String adresse;
 	private String ville;
 	private String codePostal;
-    private Boolean isFree;
-    private Boolean isHandicap;
-    private Boolean isSecured;
+    private int isFree;
+    private int isHandicap;
+    private int isSecured;
     
     public PlaceDAO() {
 		// no args
@@ -61,21 +61,21 @@ public class PlaceDAO {
 	}
 
 	public Boolean getIsFree() {
-		return isFree;
+		return isFree == 0? false : true;
 	}
-	public void setIsFree(Boolean isFree) {
+	public void setIsFree(int isFree) {
 		this.isFree = isFree;
 	}
 	public Boolean getIsHandicap() {
-		return isHandicap;
+		return isHandicap == 0? false : true;
 	}
-	public void setIsHandicap(Boolean isHandicap) {
+	public void setIsHandicap(int isHandicap) {
 		this.isHandicap = isHandicap;
 	}
 	public Boolean getIsSecured() {
-		return isSecured;
+		return isSecured == 0? false : true;
 	}
-	public void setIsSecured(Boolean isSecured) {
+	public void setIsSecured(int isSecured) {
 		this.isSecured = isSecured;
 	}
 }
