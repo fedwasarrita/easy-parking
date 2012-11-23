@@ -203,16 +203,14 @@ public class MapViewActivity extends MapActivity {
 			     pw = new PopupWindow(
 			       inflater.inflate(R.layout.legend_popup, null, false),200,200,true);
 
-			    
 			    // The code below assumes that the root container has an id called 'main'
 			    pw.showAtLocation(this.findViewById(R.id.mapview), Gravity.CENTER, 0, 0);
-			    Button close = (Button) findViewById(R.id.button1);
-		     	close.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					pw.dismiss();
-					}
-		     	});
+			    
+	}
+	
+	//Méthode de fermeture de la popup
+	public void closePopup(View view){
+		pw.dismiss();
+		
 	}
 }
