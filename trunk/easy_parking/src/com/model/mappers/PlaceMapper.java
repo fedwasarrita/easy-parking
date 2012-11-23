@@ -13,6 +13,12 @@ import com.model.DTO.Place;
 
 public class PlaceMapper {
 	
+	/**
+	 * Méthode permettant de mapper l'objet PlaceDAO en bean Place
+	 * @param place : la place récupéré depuis le webservice
+	 * @return une place
+	 */
+	
 	public static Place MapPlaceDAOToDTO(PlaceDAO place)
 	{
 		Place vPlace = new Place();
@@ -31,6 +37,11 @@ public class PlaceMapper {
 		return vPlace;
 	}
 	
+	/**
+	 * Méthode permettant de mapper l'objet PlaceFullDAO en bean Place
+	 * @param place : la place récupérée depuis le webservice
+	 * @return place
+	 */
 	public static Place MapPlaceDAOToDTO(PlaceFullDAO place)
 	{
 		Place vPlace = new Place();
