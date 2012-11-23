@@ -28,6 +28,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -39,6 +40,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 
 public class MapViewActivity extends MapActivity {
 
@@ -46,6 +48,8 @@ public class MapViewActivity extends MapActivity {
 	MapController mapController;
 	SearchForm searchForm;
 	PopupWindow pw;
+	ProgressDialog vSpinner;
+	
 	Boolean isMarketsSet = false;
 	
     @Override
@@ -56,6 +60,13 @@ public class MapViewActivity extends MapActivity {
         mapView.setBuiltInZoomControls(true);
         mapController = mapView.getController();
         Intent currentIntent = getIntent();
+
+        
+        this.vSpinner=new ProgressDialog(this);
+    	this.vSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    	this.vSpinner.setMessage("Loading, please wait");
+        
+        
         
         if (currentIntent.getStringExtra("LocationWay").equals("ByGeolocalisation"))
         {
@@ -80,9 +91,8 @@ public class MapViewActivity extends MapActivity {
     }
     
     public void setMarkers(GeoPoint origine, List<Place> places){
-    	
     	List<Overlay> mapOverlays = mapView.getOverlays();
-    	OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+    	OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
 		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 		SitesOverlay s = new SitesOverlay(marker,this);
 		s.addOverlay(o);
@@ -101,7 +111,12 @@ public class MapViewActivity extends MapActivity {
 			}
 		}
 		mapOverlays.add(s);
+    	this.vSpinner.dismiss();
+		
+		
+
 		PlaceProvider.listPlaces = places;
+
 
     }
 
@@ -208,7 +223,7 @@ public class MapViewActivity extends MapActivity {
 			    
 	}
 	
-	//Méthode de fermeture de la popup
+	//Mï¿½thode de fermeture de la popup
 	public void closePopup(View view){
 		pw.dismiss();
 		
