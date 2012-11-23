@@ -54,9 +54,9 @@ public class MapViewActivity extends MapActivity {
 
         
         this.vSpinner=new ProgressDialog(this);
-    	this.vSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+    	//this.vSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
     	//this.vSpinner.setMessage("Loading, please wait");
-    	this.vSpinner.show(this,null,"Loading, please wait" ,true);
+    	this.vSpinner=ProgressDialog.show(this,"","Loading, please wait");
         
         
         
