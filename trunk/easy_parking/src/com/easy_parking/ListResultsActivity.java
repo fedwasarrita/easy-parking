@@ -19,7 +19,6 @@ import com.provider.PlaceProvider;
 
 public class ListResultsActivity extends ListActivity {
 	
-	private final ArrayList<Place> m_places = new ArrayList<Place>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +36,7 @@ public class ListResultsActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				Intent intent = new Intent(ListResultsActivity.this , PlaceDetailsActivity.class);
-				intent.putExtra("Place",m_places.get(arg2));
+				intent.putExtra("Place",PlaceProvider.listPlaces.get(arg2));
 				ListResultsActivity.this.startActivity(intent);
 			}
         });

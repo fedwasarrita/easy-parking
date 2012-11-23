@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
@@ -17,7 +18,7 @@ import com.model.adapters.ContrainteUnitaireAdapter;
 
 public class PlaceDetailsActivity extends Activity {
 
-	private final Place CurrentPlace= new Place();
+	private Place CurrentPlace= new Place();
 	private final ArrayList<Contrainte> l_contraintes = new ArrayList<Contrainte>();
 	
     @Override
@@ -25,25 +26,28 @@ public class PlaceDetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_details);
         
-        //TODO appel couche métier -> service pour avoir les informations de la place
-        CurrentPlace.setAdresse(new Adresse("Boulevard Vauban","Lille","59000"));
-        CurrentPlace.setCoordonneesGPS(new CoordonneesGPS(50.629213, 3.0432389000000057));
-        CurrentPlace.setDistance(525);
-        CurrentPlace.setGratuite(true);
-        ArrayList<Contrainte> lContraintes = new ArrayList<Contrainte>();
-        lContraintes.add(new Contrainte("Horaire","Dépose minute"));
-        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
-        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
-        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
-        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
-        CurrentPlace.setContraintes(lContraintes);
-        CurrentPlace.setHandicapee(true);
-        CurrentPlace.setIdPlace(1);
-        CurrentPlace.setLibre(true);
-        CurrentPlace.setSecurisee(true);
-        CurrentPlace.setTarif("Gratuit");
-        CurrentPlace.setTypePlace("Classique");
+        Intent currentIntent = getIntent();
+        CurrentPlace = (Place) currentIntent.getSerializableExtra("Place");
         
+//        //TODO appel couche métier -> service pour avoir les informations de la place
+//        CurrentPlace.setAdresse(new Adresse("Boulevard Vauban","Lille","59000"));
+//        CurrentPlace.setCoordonneesGPS(new CoordonneesGPS(50.629213, 3.0432389000000057));
+//        CurrentPlace.setDistance(525);
+//        CurrentPlace.setGratuite(true);
+//        ArrayList<Contrainte> lContraintes = new ArrayList<Contrainte>();
+//        lContraintes.add(new Contrainte("Horaire","Dépose minute"));
+//        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
+//        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
+//        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
+//        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
+//        CurrentPlace.setContraintes(lContraintes);
+//        CurrentPlace.setHandicapee(true);
+//        CurrentPlace.setIdPlace(1);
+//        CurrentPlace.setLibre(true);
+//        CurrentPlace.setSecurisee(true);
+//        CurrentPlace.setTarif("Gratuit");
+//        CurrentPlace.setTypePlace("Classique");
+//        
         UpdateUI();
     }
     

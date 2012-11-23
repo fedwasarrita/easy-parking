@@ -84,7 +84,7 @@ public class MapViewActivity extends MapActivity {
     
     public void setMarkers(GeoPoint origine, List<Place> places){
     	List<Overlay> mapOverlays = mapView.getOverlays();
-    	OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
+    	OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
 		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 		SitesOverlay s = new SitesOverlay(marker,this);
 		s.addOverlay(o);
@@ -98,7 +98,7 @@ public class MapViewActivity extends MapActivity {
 				p.setDistance((int) (results[0] / 100000));
 				Double latitude = p.getCoordonneesGPS().getLatitude() * 1000000;
 				Double longitude  = p.getCoordonneesGPS().getLongitude() * 1000000;
-				OverlayItem m = new OverlayItem(new GeoPoint(latitude.intValue(),longitude.intValue()),p.getAdresse().getAdresse(),"cool");
+				OverlayItem m = new OverlayItem(new GeoPoint(latitude.intValue(),longitude.intValue()),p.getAdresse().getAdresse(),"");
 				s.addOverlay(m);
 			}
 		}
