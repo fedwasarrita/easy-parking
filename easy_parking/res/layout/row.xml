@@ -11,44 +11,47 @@
         android:layout_height="match_parent"
         android:layout_weight="0.33"
         android:text="TextView" />
-
-    <LinearLayout
+
+    <FrameLayout
         android:id="@+id/list_info_bloc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.33" ><TextView
             android:id="@+id/PlaceDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="0.33"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <ImageView
-            android:id="@+id/IsPayante"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:src="@drawable/ppayante" />
-
-        <ImageView
-            android:id="@+id/IsHandicapee"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:layout_gravity="right"
-            android:src="@drawable/phandicapee" />
-
-        <ImageView
-            android:id="@+id/IsSecurisee"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:src="@drawable/psecurisee" />
+            android:layout_weight="0.33" >
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/IsPayante"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:src="@drawable/ppayante" />
+
+            <ImageView
+                android:id="@+id/IsHandicapee"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:src="@drawable/phandicapee" />
+
+            <ImageView
+                android:id="@+id/IsSecurisee"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.33"
+                android:src="@drawable/psecurisee" />
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>
