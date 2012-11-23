@@ -17,7 +17,9 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="18dp"
-            android:text="@string/home_seek_place_label" />
+            android:text="@string/home_seek_place_label" 
+            style="@style/titleText"
+            />
 
         <CheckBox
             android:id="@+id/checkBoxFree"
@@ -78,14 +80,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="1dp"
-                    android:text="@string/home_perimetre_label" />
+                    android:text="@string/home_perimetre_label" 
+                    style="@style/titleText"/>"
 
                 <TextView
                     android:id="@+id/TextViewPerimetreValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="1dp" />
+                    android:layout_marginTop="1dp"
+                    style="@style/seekBarValueText" />
             </LinearLayout>
 
             <SeekBar
@@ -116,7 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
                 android:onClick="goToMapView"
-                android:text="@string/home_Geolocalisation_label" />
+                android:text="@string/home_Geolocalisation_label" 
+                />
 
             <Button
                 android:id="@+id/buttonByAdress"
@@ -144,7 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="@string/home_adress_label"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium" 
+                style="@style/titleText"/>/>
 
             <EditText
                 android:id="@+id/editTextAdress"
@@ -154,13 +160,13 @@
 
             <Button
                 android:id="@+id/buttonGo"
-                style="?android:attr/buttonStyleSmall"
+				style="@style/customButton"
                 android:layout_width="66dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:onClick="goToMapView"
                 android:text="@string/home_search_label" />
-
+<!--                 style="?android:attr/buttonStyleSmall" -->
         </LinearLayout>
     </RelativeLayout>
 

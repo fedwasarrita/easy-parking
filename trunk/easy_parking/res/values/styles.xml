@@ -5,4 +5,81 @@
     </style>	
    
 
+
+<!-- <style name="Button"> -->
+<!-- 	<item name="android:layout_width">wrap_content</item> -->
+<!-- 	<item name="android:layout_height">wrap_content</item> -->
+<!-- 	<item name="android:textColor">@color/textColor</item> -->
+	
+<!-- 	<item name="android:background">@color/btnBackground</item> -->
+	
+<!-- 	<item name="android:layout_gravity">center_horizontal</item> -->
+<!-- </style> -->
+
+ <style name="AppTheme" parent="@android:Theme">  
+     <item name="android:buttonStyle">@style/customButton</item>
+	 <item name="android:textColor">@color/textColor</item>
+		<item name="android:textSize">@dimen/textSize</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:typeface">serif</item>
+		<item name="android:background">@color/background</item>
+     
+ </style>
+ 
+<!--  <style name="MyCustomTheme" parent="android:Theme.Light.NoTitleBar"> -->
+<!-- 		<item name="android:textColor">@color/textColor</item> -->
+<!-- 		<item name="android:textSize">@dimen/textSize</item> -->
+<!-- 		<item name="android:textStyle">italic</item> -->
+<!-- 		<item name="android:typeface">serif</item> -->
+<!-- 		<item name="android:background">@color/background</item> -->
+<!-- 	</style> -->
+ 
+ 
+ 
+ 
+ 
+ <style name="customButton" prarent="android:style/Widget.button">    
+        <item name="android:gravity">center_vertical|center_horizontal</item>  
+        <item name="android:textColor">@color/btnTextColor</item>  
+        <item name="android:shadowColor">#FF000000</item>  
+        <item name="android:shadowDx">0</item>  
+        <item name="android:shadowDy">-1</item>  
+        <item name="android:shadowRadius">0.1</item>  
+        <item name="android:textSize">@dimen/textSize</item>  
+        <item name="android:textStyle">bold</item>  
+        <item name="android:background">@drawable/btn_custom</item>  
+        <item name="android:focusable">true</item>  
+        <item name="android:clickable">true</item>  
+    </style>    
+    
+     <style name="titre1" parent="@android:style/TextAppearance">
+		<item name="android:textColor">@color/textColor</item>
+		<item name="android:textSize">@dimen/titleTextSize</item>
+		<item name="android:textStyle">italic</item>
+		<item name="android:typeface">serif</item>
+	</style>   
+    
+      <style name="titleText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/titleTextColor</item>
+       <item name="android:textSize">@dimen/titleTextSize</item>
+       <item name="android:textStyle">bold|italic</item>
+    </style>
+    
+    <style name="seekBarValueText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/seekBarValueTextColor</item>
+       <item name="android:textSize">@dimen/textSize</item>
+       <item name="android:textStyle">bold|italic</item>
+    </style>
+    
+    <style name="CheckBox" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/textColor</item>
+       <item name="android:textSize">@dimen/textSize</item>
+       
+    </style>
+    
+    
 </resources>
+
+ 
+    
+ 
