@@ -1,46 +1,37 @@
 package com.easy_parking;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.business.PlaceBusiness;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
-import com.model.AO.EasyException;
-import com.model.AO.SearchForm;
-import com.model.AO.SitesOverlay;
-import com.model.DTO.Place;
-import com.provider.PlaceProvider;
-import com.utils.MapUtils;
-
-import android.R.integer;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.PopupWindow;
-import android.widget.ProgressBar;
+
+import com.business.PlaceBusiness;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
+import com.model.AO.SearchForm;
+import com.model.AO.SitesOverlay;
+import com.model.DTO.Place;
+import com.provider.PlaceProvider;
 
 public class MapViewActivity extends MapActivity {
 
@@ -64,7 +55,8 @@ public class MapViewActivity extends MapActivity {
         
         this.vSpinner=new ProgressDialog(this);
     	this.vSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-    	this.vSpinner.setMessage("Loading, please wait");
+    	//this.vSpinner.setMessage("Loading, please wait");
+    	this.vSpinner.show(this,null,"Loading, please wait" ,true);
         
         
         
