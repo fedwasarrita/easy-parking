@@ -16,6 +16,8 @@ public class PlaceProvider {
 	
 	private static PlaceProvider instance;
 	
+	public static List<Place> listPlaces;
+	
 	
 	public static PlaceProvider getInstance(){
 		if (instance == null){
