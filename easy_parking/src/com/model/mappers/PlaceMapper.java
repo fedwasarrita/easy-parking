@@ -19,6 +19,11 @@ public class PlaceMapper {
 		vPlace.setIdPlace(place.getIdPlace());
 		CoordonneesGPS coord = new CoordonneesGPS(place.getLatitude(), place.getLongitude());
 		vPlace.setCoordonneesGPS(coord);
+		
+		//Adresse
+		Adresse adresse = new Adresse(place.getAdresse(), place.getVille(), place.getCodePostal());
+		vPlace.setAdresse(adresse);
+		
 		vPlace.setGratuite(place.getIsFree());
 		vPlace.setLibre(true);
 		vPlace.setHandicapee(place.getIsHandicap());

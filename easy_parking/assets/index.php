@@ -4,7 +4,7 @@ $pdo = new PDO('mysql:host=mysql51-69.perso;dbname=courspaeandroi', 'courspaeand
 
 if(isset($_POST['method']))
 {
-	//Appel à la méthode getListePlace
+	//Appel ï¿½ la mï¿½thode getListePlace
 	if($_POST['method'] == 'getListPlace')
 	{
 		if(isset($_POST['long']) && isset($_POST['lat']) && isset($_POST['peri']))
@@ -32,7 +32,7 @@ if(isset($_POST['method']))
 			getListPlace($_POST['lat'],$_POST['long'], $_POST['peri'],$filters,$pdo);
 		}
 	}
-	//Appel à la méthode getPlace
+	//Appel ï¿½ la mï¿½thode getPlace
 	else if($_POST['method'] == 'getPlace')
 	{
 		if(isset($_POST['id']))
@@ -44,33 +44,34 @@ if(isset($_POST['method']))
 }
 
 /**
-* 	Méthode permettant de récupérer la liste des places libres dans un périmètre donné
+* 	Mï¿½thode permettant de rï¿½cupï¿½rer la liste des places libres dans un pï¿½rimï¿½tre donnï¿½
 *	@param double $long : la longitude
 *	@param double $lat : la latitude
-*	@param int $peri : le perimètre
+*	@param int $peri : le perimï¿½tre
 *	@param array $filters : tableau de filtres
 *	@return json
 */
 
 function getListPlace($lat,$long,$peri,$filters,$pdo)
 {
-	//Calcul du carré périmètre
+	//Calcul du carrï¿½ pï¿½rimï¿½tre
 	$d = $peri/1000;
 	//$R = 6371;
 	
 	$latMin =  $lat - $d/111;
 	$latMax = $lat + $d/111;
 	
-	//parce qu'on est en france est que c'est plus facile comme ça
+	//parce qu'on est en france est que c'est plus facile comme ï¿½a
 	$longMin = $long - $d/76;
 	$longMax = $long + $d/76;
 		
-	$query = 'SELECT p.idPlace, p.latitude, p.longitude, p.gratuit as isFree, p.handicape as isHandicap, p.securise as isSecured ';
-	$query .= 'FROM Place p, Adresse a WHERE p.adresse = a.idAdresse';
+	$query = 'SELECT p.idPlace, p.latitude, p.longitude, p.gratuit as isFree, p.handicape as isHandicap, p.securise as isSecured,';
+	$query .= '	a.Adresse as adresse, a.Ville as ville, a.CodePostal as codePostal';
+	$query .= ' FROM Place p, Adresse a WHERE p.adresse = a.idAdresse';
 	
 	//clause recherche des places libres
 	$query .= ' AND Libre = 1';
-	//Rechere dans le périmètre donné
+	//Rechere dans le pï¿½rimï¿½tre donnï¿½
 	$query .= ' AND (p.latitude BETWEEN '.$latMin.' AND '.$latMax.')';
 	$query .= ' AND (p.longitude BETWEEN '.$longMin.' AND '.$longMax.')';
 	foreach($filters as $key => $filter)
@@ -98,6 +99,9 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 			$places[$i]['idPlace']=$place['idPlace'];
 			$places[$i]['latitude']=$place['latitude'];
 			$places[$i]['longitude']=$place['longitude'];
+			$places[$i]['adresse'] = $place['adresse'];
+			$places[$i]['ville'] = $place['ville'];
+			$places[$i]['codePostal'] = $place['codePostal'];
 			$places[$i]['isFree']=$place['isFree'];
 			$places[$i]['isHandicap']=$place['isHandicap'];
 			$places[$i]['isSecured']=$place['isSecured'];
