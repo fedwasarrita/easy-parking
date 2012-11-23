@@ -16,9 +16,12 @@
     <application
         android:icon="@drawable/ppayante"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+		android:theme="@style/AppTheme"
+        >
+         <!--    android:theme="@style/MyCustomTheme"        -->
         <uses-library android:name="com.google.android.maps" />
-
+	
+      
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
@@ -56,4 +59,8 @@
         </activity>
     </application>
 
+      
+  
+    
+      
 </manifest>
