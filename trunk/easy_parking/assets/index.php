@@ -1,10 +1,23 @@
 <?php
-
-$pdo = new PDO('mysql:host=mysql51-69.perso;dbname=courspaeandroi', 'courspaeandroi', 'LLaYq3Ia');
+ini_set("display_errors",0);error_reporting(0);
+try
+{
+	$pdo = new PDO('mysql:host=mysql51-69.perso;dbname=courspaeandroi', 'courspaeandroi', 'LLaYq3Ia');
+}
+catch(Exception $e)
+{
+	//Definition du statut de la reponse
+	$json['statut'] = array();
+	$json['statut']['isSuccess'] = false;
+	$json['statut']['message'] = 'KO';	
+	
+	echo json_encode($json);
+	die();
+}
 
 if(isset($_POST['method']))
 {
-	//Appel � la m�thode getListePlace
+	//Appel à la méthode getListePlace
 	if($_POST['method'] == 'getListPlace')
 	{
 		if(isset($_POST['long']) && isset($_POST['lat']) && isset($_POST['peri']))
@@ -32,7 +45,7 @@ if(isset($_POST['method']))
 			getListPlace($_POST['lat'],$_POST['long'], $_POST['peri'],$filters,$pdo);
 		}
 	}
-	//Appel � la m�thode getPlace
+	//Appel à la méthode getPlace
 	else if($_POST['method'] == 'getPlace')
 	{
 		if(isset($_POST['id']))
@@ -44,24 +57,25 @@ if(isset($_POST['method']))
 }
 
 /**
-* 	M�thode permettant de r�cup�rer la liste des places libres dans un p�rim�tre donn�
+* 	Méthode permettant de récupérer la liste des places libres dans un périmètre donné
 *	@param double $long : la longitude
 *	@param double $lat : la latitude
-*	@param int $peri : le perim�tre
+*	@param int $peri : le perimètre
 *	@param array $filters : tableau de filtres
+* 	@param pdo : la connection bdd
 *	@return json
 */
 
 function getListPlace($lat,$long,$peri,$filters,$pdo)
 {
-	//Calcul du carr� p�rim�tre
+	//Calcul du carré périmètre
 	$d = $peri/1000;
 	//$R = 6371;
 	
 	$latMin =  $lat - $d/111;
 	$latMax = $lat + $d/111;
 	
-	//parce qu'on est en france est que c'est plus facile comme �a
+	//parce qu'on est en france et que c'est plus facile comme ça
 	$longMin = $long - $d/76;
 	$longMax = $long + $d/76;
 		
@@ -71,9 +85,10 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 	
 	//clause recherche des places libres
 	$query .= ' AND Libre = 1';
-	//Rechere dans le p�rim�tre donn�
+	//Rechere dans le périmètre donné
 	$query .= ' AND (p.latitude BETWEEN '.$latMin.' AND '.$latMax.')';
 	$query .= ' AND (p.longitude BETWEEN '.$longMin.' AND '.$longMax.')';
+	
 	foreach($filters as $key => $filter)
 	{
 		if($filter != null)
@@ -83,17 +98,14 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 	}
 	
 	$json = array();
-	
-	//Definition du statut de la reponse
-	$json['statut'] = array();
-	$json['statut']['isSuccess'] = false;
-	$json['statut']['message'] = 'KO';	
-	
+		
 	try
 	{
 		$results = $pdo->query($query); 
 		$i=0;	
 		$places = array();
+		
+		//Construction de la liste de place
 		while($place = $results->fetch())
 		{			
 			$places[$i]['idPlace']=$place['idPlace'];
@@ -107,6 +119,8 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 			$places[$i]['isSecured']=$place['isSecured'];
 			$i++;
 		}
+		
+		//Construction de la reponse
 		$json['statut']['isSuccess'] = true;
 		$json['statut']['message'] = 'OK';
 		$json['places'] = $places;
@@ -114,6 +128,11 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 	}
 	catch(Exception $e)
 	{
+		//Definition du statut de la reponse
+		$json = array();
+		$json['statut'] = array();
+		$json['statut']['isSuccess'] = false;
+		$json['statut']['message'] = 'KO';	
 		echo json_encode($json);
 		die();
 	}
@@ -122,6 +141,11 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 	die();
 }
 
+/** 
+*	Function permettant de récupérer une place
+*	@param : id , l'id de la place
+*	@param : la connection bdd
+*/
 function getPlace($id,$pdo)
 {
 	$query = 'SELECT p.idPlace as id, p.latitude as latitude, p.longitude as longitude, p.libre as isFree, p.handicape as isHandicap, p.securise as isSecured,';
@@ -133,12 +157,7 @@ function getPlace($id,$pdo)
 	$query .= ' AND p.idTarif = ta.idTarif';
 	
 	$json = array();
-	
-	//Definition du statut de la reponse
-	$json['statut'] = array();
-	$json['statut']['isSuccess'] = false;
-	$json['statut']['message'] = 'KO';
-	
+		
 	try
 	{
 		$results = $pdo->query($query); 	
@@ -166,12 +185,14 @@ function getPlace($id,$pdo)
 			$queryC .= ' AND c.idTypeContrainte = tc.idTypeContrainte';
 			
 			$response = $pdo->query($queryC);
-			$i=0;
+			$j=0;
 			while($contrainte = $response->fetch())
 			{
-				$contraintes[$i]['detailContrainte'] = $contrainte['detailContrainte'];
-				$contraintes[$i]['typeContrainte'] = $contrainte['typeContrainte'];
-				$i++;
+				echo $contrainte['detailContrainte'];
+				echo $contrainte['typeContrainte'];
+				$contraintes[$j]['detailContrainte'] = utf8_encode($contrainte['detailContrainte']);
+				$contraintes[$j]['typeContrainte'] = utf8_encode($contrainte['typeContrainte']);
+				$j++;
 			}
 			$response->closeCursor();
 			$json['place']['contraintes'] = $contraintes;
@@ -180,6 +201,11 @@ function getPlace($id,$pdo)
 	}
 	catch(Exception $e)
 	{
+		//Definition du statut de la reponse
+		$json = array();
+		$json['statut'] = array();
+		$json['statut']['isSuccess'] = false;
+		$json['statut']['message'] = 'KO';	
 		echo json_encode($json);
 		die();
 	}
