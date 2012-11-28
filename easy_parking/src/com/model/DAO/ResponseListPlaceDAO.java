@@ -5,7 +5,7 @@ import java.util.List;
 public class ResponseListPlaceDAO {
 	
 	private StatutDAO statut;
-    private List<PlaceDAO> places;
+    private List<PlaceFullDAO> places;
     
     public ResponseListPlaceDAO() {
 		// no args
@@ -17,10 +17,10 @@ public class ResponseListPlaceDAO {
 	public void setStatut(StatutDAO statut) {
 		this.statut = statut;
 	}
-	public List<PlaceDAO> getPlaces() {
+	public List<PlaceFullDAO> getPlaces() {
 		return places;
 	}
-	public void setPlaces(List<PlaceDAO> places) {
+	public void setPlaces(List<PlaceFullDAO> places) {
 		this.places = places;
 	}
 

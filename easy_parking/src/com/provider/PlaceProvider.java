@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.model.AO.EasyException;
 import com.model.AO.SearchForm;
-import com.model.DAO.PlaceDAO;
+import com.model.DAO.PlaceFullDAO;
 import com.model.DAO.ResponseListPlaceDAO;
 import com.model.DAO.ResponsePlaceDAO;
 import com.model.DTO.Place;
@@ -47,8 +47,8 @@ public class PlaceProvider {
 		}
 		
 		//mapper les places
-		List<PlaceDAO> vListPlaceDao = vResponse.getPlaces();
-		for(PlaceDAO vPlaceDao : vListPlaceDao)
+		List<PlaceFullDAO> vListPlaceDao = vResponse.getPlaces();
+		for(PlaceFullDAO vPlaceDao : vListPlaceDao)
 		{
 			vListPlace.add(PlaceMapper.MapPlaceDAOToDTO(vPlaceDao));
 		}
