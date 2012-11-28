@@ -34,7 +34,7 @@ public class TabResultsActivity extends TabActivity {
         // Tab for the List
         TabSpec listSpec = tabHost.newTabSpec("Songs");
         // setting Title and Icon for the Tab
-        listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_view_as_list));
+        listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_view_as_list_light));
         Intent listIntent = new Intent(this, ListResultsActivity.class);
         listIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
         listIntent.putExtra("SearchForm", searchF);
