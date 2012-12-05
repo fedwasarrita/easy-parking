@@ -185,9 +185,6 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
-				//HomeActivity.this.startActivity(nextActivity);
-				
-				
 			}
 		});
 		
