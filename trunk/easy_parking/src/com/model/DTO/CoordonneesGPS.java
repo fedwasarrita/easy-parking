@@ -2,6 +2,7 @@ package com.model.DTO;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class CoordonneesGPS  implements Serializable{
 	
 	private Double latitude;
