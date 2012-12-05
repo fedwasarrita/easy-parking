@@ -52,13 +52,8 @@ public class MapViewActivity extends MapActivity {
         mapController = mapView.getController();
         Intent currentIntent = getIntent();
 
-        
-        this.vSpinner=new ProgressDialog(this);
-    	//this.vSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-    	//this.vSpinner.setMessage("Loading, please wait");
-    	this.vSpinner=ProgressDialog.show(this,"","Loading, please wait");
-        
-        
+        //Launch the Spinner while loading the data through web services
+    	this.vSpinner=ProgressDialog.show(this,"","Loading, please wait",false,true);
         
         if (currentIntent.getStringExtra("LocationWay").equals("ByGeolocalisation"))
         {
@@ -84,7 +79,7 @@ public class MapViewActivity extends MapActivity {
     
     public void setMarkers(GeoPoint origine, List<Place> places){
     	List<Overlay> mapOverlays = mapView.getOverlays();
-    	OverlayItem o = new OverlayItem(origine,"Vous êtes ici","cool");
+    	OverlayItem o = new OverlayItem(origine,"Vous ï¿½tes ici","cool");
 		Drawable marker=getResources().getDrawable(R.drawable.ic_blue_dot);
 		SitesOverlay s = new SitesOverlay(marker,this);
 		s.addOverlay(o);
@@ -103,12 +98,12 @@ public class MapViewActivity extends MapActivity {
 			}
 		}
 		mapOverlays.add(s);
+		
+		//Data loaded, close the spinner
     	this.vSpinner.dismiss();
 		
 		
-
 		PlaceProvider.listPlaces = places;
-
 
     }
 
