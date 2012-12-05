@@ -2,6 +2,7 @@ package com.model.DTO;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Contrainte  implements Serializable{
 	
 	private String typeContrainte;

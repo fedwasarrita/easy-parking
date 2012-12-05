@@ -1,7 +1,6 @@
 package com.easy_parking;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -12,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.model.DTO.Adresse;
 import com.model.DTO.Place;
 import com.model.adapters.PlaceAdapter;
 import com.provider.PlaceProvider;

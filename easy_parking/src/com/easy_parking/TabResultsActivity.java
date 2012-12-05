@@ -1,14 +1,13 @@
 package com.easy_parking;
 
-import com.model.AO.SearchForm;
-
-import android.os.Bundle;
-import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+
+import com.model.AO.SearchForm;
 
 public class TabResultsActivity extends TabActivity {
 

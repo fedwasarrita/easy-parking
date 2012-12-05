@@ -10,9 +10,7 @@ import android.view.Menu;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.model.DTO.Adresse;
 import com.model.DTO.Contrainte;
-import com.model.DTO.CoordonneesGPS;
 import com.model.DTO.Place;
 import com.model.adapters.ContrainteUnitaireAdapter;
 
@@ -29,17 +27,17 @@ public class PlaceDetailsActivity extends Activity {
         Intent currentIntent = getIntent();
         CurrentPlace = (Place) currentIntent.getSerializableExtra("Place");
         
-//        //TODO appel couche métier -> service pour avoir les informations de la place
+//        //TODO appel couche mï¿½tier -> service pour avoir les informations de la place
 //        CurrentPlace.setAdresse(new Adresse("Boulevard Vauban","Lille","59000"));
 //        CurrentPlace.setCoordonneesGPS(new CoordonneesGPS(50.629213, 3.0432389000000057));
 //        CurrentPlace.setDistance(525);
 //        CurrentPlace.setGratuite(true);
 //        ArrayList<Contrainte> lContraintes = new ArrayList<Contrainte>();
-//        lContraintes.add(new Contrainte("Horaire","Dépose minute"));
-//        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
-//        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
-//        lContraintes.add(new Contrainte("Réservation","Réservée Livraisons"));
-//        lContraintes.add(new Contrainte("Réservation","Réservée Riverains"));
+//        lContraintes.add(new Contrainte("Horaire","Dï¿½pose minute"));
+//        lContraintes.add(new Contrainte("Rï¿½servation","Rï¿½servï¿½e Livraisons"));
+//        lContraintes.add(new Contrainte("Rï¿½servation","Rï¿½servï¿½e Riverains"));
+//        lContraintes.add(new Contrainte("Rï¿½servation","Rï¿½servï¿½e Livraisons"));
+//        lContraintes.add(new Contrainte("Rï¿½servation","Rï¿½servï¿½e Riverains"));
 //        CurrentPlace.setContraintes(lContraintes);
 //        CurrentPlace.setHandicapee(true);
 //        CurrentPlace.setIdPlace(1);
@@ -62,14 +60,14 @@ public class PlaceDetailsActivity extends Activity {
     	txTarif = (TextView)findViewById(R.id.textViewtarif);
     	txTarif.setText(CurrentPlace.getTarif());
     	
-    	//Remplit la donnée concernant le handicap
+    	//Remplit la donnï¿½e concernant le handicap
     	TextView txHandicap;
     	txHandicap = (TextView)findViewById(R.id.textViewaccessibilite);
     	if(CurrentPlace.isHandicapee()){
     		txHandicap.setText(R.string.detail_info_accessH);
     	}
     	
-    	//Remplit la donnée sur la sécurisation de la place
+    	//Remplit la donnï¿½e sur la sï¿½curisation de la place
     	TextView txSecurite;
     	txSecurite = (TextView)findViewById(R.id.textViewSecurisation);
     	if(CurrentPlace.isSecurisee()){
@@ -87,7 +85,7 @@ public class PlaceDetailsActivity extends Activity {
     	while(ite.hasNext()){
     		Contrainte vContrainte = ite.next();
     		if(vContrainte.getTypeContrainte().equals("Horaire")){
-    			//On met la contrainte horaire dans un emplacement spécifique
+    			//On met la contrainte horaire dans un emplacement spï¿½cifique
     			TextView txContrainteHoraire;
     			txContrainteHoraire = (TextView)findViewById(R.id.txView_contrainte_horaire);
     			txContrainteHoraire.setText(vContrainte.getLibelle());
