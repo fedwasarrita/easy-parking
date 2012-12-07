@@ -1,5 +1,6 @@
 package com.model.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaceFullDAO {
@@ -12,9 +13,10 @@ public class PlaceFullDAO {
 	private String adresse;
 	private String ville;
 	private String codePostal;
-	private List<ContrainteDAO> contraintes;
 	private String typePlace;
 	private String tarif;
+	private List<ContrainteDAO> contraintes = new ArrayList<ContrainteDAO>();
+
 	
 	public PlaceFullDAO() {
 		// no args

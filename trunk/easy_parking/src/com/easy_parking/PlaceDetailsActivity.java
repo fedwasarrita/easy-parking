@@ -50,6 +50,8 @@ public class PlaceDetailsActivity extends Activity {
     }
     
     public void UpdateUI(){
+    	TextView t;
+    	
     	//Remplit l'adresse
     	TextView txAdresse;
     	txAdresse = (TextView)findViewById(R.id.TextAdressvalue);
@@ -60,14 +62,14 @@ public class PlaceDetailsActivity extends Activity {
     	txTarif = (TextView)findViewById(R.id.textViewtarif);
     	txTarif.setText(CurrentPlace.getTarif());
     	
-    	//Remplit la donnï¿½e concernant le handicap
+    	//Remplit la donnée concernant le handicap
     	TextView txHandicap;
     	txHandicap = (TextView)findViewById(R.id.textViewaccessibilite);
     	if(CurrentPlace.isHandicapee()){
     		txHandicap.setText(R.string.detail_info_accessH);
     	}
     	
-    	//Remplit la donnï¿½e sur la sï¿½curisation de la place
+    	//Remplit la donnée sur la sécurisation de la place
     	TextView txSecurite;
     	txSecurite = (TextView)findViewById(R.id.textViewSecurisation);
     	if(CurrentPlace.isSecurisee()){
@@ -79,18 +81,32 @@ public class PlaceDetailsActivity extends Activity {
     	txTypePlace = (TextView)findViewById(R.id.TextViewTypeValue);
     	txTypePlace.setText(CurrentPlace.getTypePlace());
     	
-    	
+    	t = (TextView)findViewById(R.id.detail_contrainteHoraire_label);
+    	t.setVisibility(8);
+    	t = (TextView)findViewById(R.id.detail_contrainteParticuliere_label);
+    	t.setVisibility(8);
     	//Remplit les contraintes
     	Iterator<Contrainte> ite = CurrentPlace.getContraintes().iterator();
     	while(ite.hasNext()){
     		Contrainte vContrainte = ite.next();
     		if(vContrainte.getTypeContrainte().equals("Horaire")){
-    			//On met la contrainte horaire dans un emplacement spï¿½cifique
+    			//On met la contrainte horaire dans un emplacement spécifique
     			TextView txContrainteHoraire;
     			txContrainteHoraire = (TextView)findViewById(R.id.txView_contrainte_horaire);
+    			if(txContrainteHoraire == null || txContrainteHoraire.equals(""))
+    			{
+    				
+    			}
+    			else
+    			{
+    				t = (TextView)findViewById(R.id.detail_contrainteHoraire_label);
+    		    	t.setVisibility(0);
+    			}
     			txContrainteHoraire.setText(vContrainte.getLibelle());
     		}
     		else{
+    			t = (TextView)findViewById(R.id.detail_contrainteParticuliere_label);
+    	    	t.setVisibility(0);
     			l_contraintes.add(vContrainte);
     		}
     		
