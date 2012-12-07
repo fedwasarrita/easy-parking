@@ -14,8 +14,8 @@ import com.model.DTO.Place;
 public class PlaceMapper {
 	
 	/**
-	 * Méthode permettant de mapper l'objet PlaceDAO en bean Place
-	 * @param place : la place récupéré depuis le webservice
+	 * Mï¿½thode permettant de mapper l'objet PlaceDAO en bean Place
+	 * @param place : la place rï¿½cupï¿½rï¿½ depuis le webservice
 	 * @return une place
 	 */
 	
@@ -38,8 +38,8 @@ public class PlaceMapper {
 	}
 	
 	/**
-	 * Méthode permettant de mapper l'objet PlaceFullDAO en bean Place
-	 * @param place : la place récupérée depuis le webservice
+	 * Mï¿½thode permettant de mapper l'objet PlaceFullDAO en bean Place
+	 * @param place : la place rï¿½cupï¿½rï¿½e depuis le webservice
 	 * @return place
 	 */
 	public static Place MapPlaceDAOToDTO(PlaceFullDAO place)
@@ -64,10 +64,10 @@ public class PlaceMapper {
 		CoordonneesGPS coords = new CoordonneesGPS(place.getLatitude(), place.getLongitude());
 		vPlace.setCoordonneesGPS(coords);
 		
-		vPlace.setGratuite(place.isFree());
-		vPlace.setHandicapee(place.isHandicap());
+		vPlace.setGratuite(place.isFree() == 0 ? false : true );
+		vPlace.setHandicapee(place.isHandicap() == 0 ? false : true);
 		vPlace.setLibre(true);
-		vPlace.setSecurisee(place.isSecured());
+		vPlace.setSecurisee(place.isSecured()== 0 ? false : true);
 		vPlace.setTarif(place.getTarif());
 		vPlace.setTypePlace(place.getTypePlace());
 		

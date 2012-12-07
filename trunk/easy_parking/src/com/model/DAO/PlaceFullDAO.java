@@ -7,9 +7,9 @@ public class PlaceFullDAO {
 
 	private double latitude;
 	private double longitude;
-	private boolean isFree;
-	private boolean isHandicap;
-	private boolean isSecured;
+	private int isFree;
+	private int isHandicap;
+	private int isSecured;
 	private String adresse;
 	private String ville;
 	private String codePostal;
@@ -35,22 +35,22 @@ public class PlaceFullDAO {
 		this.longitude = longitude;
 	}
 
-	public boolean isFree() {
+	public int isFree() {
 		return isFree;
 	}
-	public void setFree(boolean isFree) {
+	public void setFree(int isFree) {
 		this.isFree = isFree;
 	}
-	public boolean isHandicap() {
+	public int isHandicap() {
 		return isHandicap;
 	}
-	public void setHandicap(boolean isHandicap) {
+	public void setHandicap(int isHandicap) {
 		this.isHandicap = isHandicap;
 	}
-	public boolean isSecured() {
+	public int isSecured() {
 		return isSecured;
 	}
-	public void setSecured(boolean isSecured) {
+	public void setSecured(int isSecured) {
 		this.isSecured = isSecured;
 	}
 	public String getAdresse() {
