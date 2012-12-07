@@ -20,7 +20,7 @@
             android:text="@string/home_seek_place_label" 
             style="@style/titleText"
             />
-
+
         <CheckBox
             android:id="@+id/checkBoxFree"
             android:layout_width="wrap_content"
@@ -29,7 +29,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/textView1"
             android:checked="true"
-            android:text="@string/home_free_label" />
+            android:text="@string/home_free_label"
+             style="@style/CheckBox" />
 
         <CheckBox
             android:id="@+id/checkBoxNoFree"
@@ -39,7 +40,8 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/checkBoxFree"
             android:checked="true"
-            android:text="@string/home_not_free_label" />
+            android:text="@string/home_not_free_label"
+             style="@style/CheckBox" />
 
         <CheckBox
             android:id="@+id/checkBoxHandicap"
@@ -48,7 +50,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/checkBoxNoFree"
-            android:text="@string/home_handicap_label" />
+            android:text="@string/home_handicap_label"
+            style="@style/CheckBox" />
 
         <CheckBox
             android:id="@+id/checkBoxSecure"
@@ -57,7 +60,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/checkBoxHandicap"
-            android:text="@string/home_secure_label" />
+            android:text="@string/home_secure_label"
+            style="@style/CheckBox" />
 
         <LinearLayout
             android:id="@+id/perimeterBlock"
