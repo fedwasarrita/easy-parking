@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="textColor">#F0E68C</color>
-	<color name="btnTextColor">#FF0000</color>
-	<color name="background">#008080</color>
-	<color name="titleTextColor">#F0FFF0</color>
-	<color name="seekBarValueTextColor">#FF8C00</color>
+	<color name="textColor">#000000</color>
+	<color name="btnTextColor">#FFFFFF</color>
+	<color name="background">#FFFFFF</color>
+	<color name="titleTextColor">#000000</color>
+	<color name="seekBarValueTextColor">#000000</color>
 </resources>
