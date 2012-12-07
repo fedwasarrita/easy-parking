@@ -80,8 +80,11 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 	$longMax = $long + $d/76;
 		
 	$query = 'SELECT p.idPlace, p.latitude, p.longitude, p.gratuit as isFree, p.handicape as isHandicap, p.securise as isSecured,';
-	$query .= '	a.Adresse as adresse, a.Ville as ville, a.CodePostal as codePostal';
-	$query .= ' FROM Place p, Adresse a WHERE p.adresse = a.idAdresse';
+	$query .= '	a.Adresse as adresse, a.Ville as ville, a.CodePostal as codePostal,';
+	$query .= ' tp.Libelle as typePlace, ta.tarif as tarif';
+	$query .= ' FROM Place p, TypePlace tp, Tarif ta, Adresse a WHERE p.adresse = a.idAdresse';
+	$query .= ' AND p.idType = tp.idTypePlace';
+	$query .= ' AND p.idTarif = ta.idTarif';
 	
 	//clause recherche des places libres
 	$query .= ' AND Libre = 1';
@@ -108,15 +111,36 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 		//Construction de la liste de place
 		while($place = $results->fetch())
 		{			
-			$places[$i]['idPlace']=$place['idPlace'];
-			$places[$i]['latitude']=$place['latitude'];
-			$places[$i]['longitude']=$place['longitude'];
+			$places[$i]['idPlace']= $place['idPlace'];
+			$places[$i]['latitude']= $place['latitude'];
+			$places[$i]['longitude']= $place['longitude'];
 			$places[$i]['adresse'] = $place['adresse'];
 			$places[$i]['ville'] = $place['ville'];
 			$places[$i]['codePostal'] = $place['codePostal'];
-			$places[$i]['isFree']=$place['isFree'];
-			$places[$i]['isHandicap']=$place['isHandicap'];
-			$places[$i]['isSecured']=$place['isSecured'];
+			$places[$i]['isFree']= $place['isFree'];
+			$places[$i]['isHandicap']= $place['isHandicap'];
+			$places[$i]['isSecured']= $place['isSecured'];
+			$places[$i]['typePlace'] = $place['typePlace'];
+			$places[$i]['tarif'] = $place['tarif'];
+			
+			$contraintes = array();
+			
+			$queryC = 'SELECT c.Libelle as detailContrainte, tc.Type as typeContrainte';
+			$queryC .= ' FROM ContraintePlace as cp, Contraintes as c, TypeContrainte as tc';
+			$queryC .= ' WHERE cp.idPlace = '.$place['idPlace'];
+			$queryC .= ' AND cp.idContrainte = c.idContrainte';
+			$queryC .= ' AND c.idTypeContrainte = tc.idTypeContrainte';
+			
+			$response = $pdo->query($queryC);
+			$j=0;
+			while($contrainte = $response->fetch())
+			{
+				$contraintes[$j]['detailContrainte'] = utf8_encode($contrainte['detailContrainte']);
+				$contraintes[$j]['typeContrainte'] = utf8_encode($contrainte['typeContrainte']);
+				$j++;
+			}
+			$response->closeCursor();
+			$places[$i]['contraintes'] = $contraintes;
 			$i++;
 		}
 		
@@ -188,8 +212,7 @@ function getPlace($id,$pdo)
 			$j=0;
 			while($contrainte = $response->fetch())
 			{
-				echo $contrainte['detailContrainte'];
-				echo $contrainte['typeContrainte'];
+
 				$contraintes[$j]['detailContrainte'] = utf8_encode($contrainte['detailContrainte']);
 				$contraintes[$j]['typeContrainte'] = utf8_encode($contrainte['typeContrainte']);
 				$j++;
