@@ -69,7 +69,7 @@ public class PlaceMapper {
 		vPlace.setLibre(true);
 		vPlace.setSecurisee(place.isSecured());
 		vPlace.setTarif(place.getTarif());
-		
+		vPlace.setTypePlace(place.getTypePlace());
 		
 		return vPlace;
 	}
