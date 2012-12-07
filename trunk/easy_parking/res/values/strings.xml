@@ -19,7 +19,7 @@
     <string name="home_perimetre_label">Périmètre :</string>
     <string name="home_perimetre_min">100</string>
     <string name="home_perimetre_step">50</string>
-    <string name="detail_title_label">Informations sur l\'emplacement</string>
+    <string name="detail_title_label">Informations</string>
     <string name="detail_localisation_label">Localisation</string>
     <string name="detail_contrainte_horaire_label">Contraintes horaires</string>
     <string name="detail_contrainte_part_label">Contraintes particulières</string>
