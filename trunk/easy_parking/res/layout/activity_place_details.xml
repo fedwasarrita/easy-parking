@@ -6,154 +6,149 @@
     android:layout_marginTop="6dp" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/TitleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="14dp"
-            android:text="@string/detail_title_label"
-            android:textColor="#005da2"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            tools:context=".PlaceDetailsActivity" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/localisationTextBlock"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp" >
-
-        <TextView
-            android:id="@+id/detail_local_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="12dp"
-            android:text="@string/detail_localisation_label"
-            android:textColor="#1a9dff"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/TextAdressvalue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/informationTextBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/localisationTextBlock"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textViewtarif"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/TitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/detail_title_label"
+                android:textColor="#005da2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                tools:context=".PlaceDetailsActivity" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/localisationTextBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/detail_local_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop=""
+                android:text="@string/detail_localisation_label"
+                android:textColor="#1a9dff"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/TextAdressvalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop=""
+                android:text="test" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/informationTextBlock"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="7dp"
-            android:textColor="#1a9dff"  />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textViewaccessibilite"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textViewtarif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp" />
+
+            <TextView
+                android:id="@+id/textViewaccessibilite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp" />
+
+            <TextView
+                android:id="@+id/textViewSecurisation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contraintHoraireTextBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/detail_contrainteHoraire_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/detail_contrainte_horaire_label"
+                android:textColor="#1a9dff"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txView_contrainte_horaire"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="14dp"
+                android:textSize="15dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/typeTextBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/detail_type_label"
+                android:layout_width="wrap_content"
+                android:layout_height="21dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/detail_type_label"
+                android:textColor="#1a9dff"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/TextViewTypeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="@string/detail_type_souterrain_label" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contrainteParticuliereTextBlock"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="7dp" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/textViewSecurisation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/detail_contrainteParticuliere_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="14dp"
+                android:text="@string/detail_contrainte_part_label"
+                android:textColor="#1a9dff"
+                android:textSize="18dp" />
 
-    <LinearLayout
-        android:id="@+id/contraintHoraireTextBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/informationTextBlock"
-        android:layout_marginTop="21dp" >
+            <ListView
+                android:id="@+id/listViewContraintes"
+                android:layout_width="wrap_content"
+                android:layout_height="127dp"
+                android:layout_gravity="bottom" >
+            </ListView>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/detail_contrainteHoraire_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="@string/detail_contrainte_horaire_label"
-            android:textColor="#1a9dff"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/txView_contrainte_horaire"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="14dp"
-            android:textSize="15dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/typeTextBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/contraintHoraireTextBlock" >
-
-        <TextView
-            android:id="@+id/detail_type_label"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginLeft="5dp"
-            android:text="@string/detail_type_label"
-            android:textColor="#1a9dff"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/TextViewTypeValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:text="@string/detail_type_souterrain_label" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/contrainteParticuliereTextBlock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/typeTextBlock"
-        android:layout_marginTop="22dp"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/detail_contrainteParticuliere_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="14dp"
-            android:text="@string/detail_contrainte_part_label"
-            android:textColor="#1a9dff"
-            android:textSize="18dp" />
-
-        <ListView
-            android:id="@+id/listViewContraintes"
-            android:layout_width="wrap_content"
-            android:layout_height="127dp"
-            android:layout_gravity="bottom" >
-        </ListView>
     </LinearLayout>
 
 </RelativeLayout>
