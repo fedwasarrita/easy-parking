@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.text.Html;
+
 import com.google.gson.Gson;
 import com.model.AO.EasyException;
 import com.model.AO.SearchForm;
@@ -32,16 +34,16 @@ public class PlaceWSService{
 	}
 	
 	/**
-	 * Méthode d'appel au web service afin de récupérer une liste de place
+	 * Mï¿½thode d'appel au web service afin de rï¿½cupï¿½rer une liste de place
 	 * en fonction des informations saisies dans le formulaire
 	 * @param sForm : le formulaire de recherche
-	 * @return la reponse de la requête au Web Service
+	 * @return la reponse de la requï¿½te au Web Service
 	 * @throws EasyException
 	 */
 	public ResponseListPlaceDAO getListPlace(SearchForm sForm) throws EasyException{
 		ResponseListPlaceDAO response = null;
 		try{
-			//initialisation des paramètres à envoyé
+			//initialisation des paramï¿½tres ï¿½ envoyï¿½
 			List<NameValuePair> postParameters = new ArrayList<NameValuePair>();	
 			
 			postParameters.add(new BasicNameValuePair("method","getListPlace"));
@@ -54,33 +56,36 @@ public class PlaceWSService{
 			
 			String json = this.client.post(Paths.ROOT_URL, postParameters);
 			
+			
+			
 			Gson vJsonObj = new Gson();
+			
 			response = vJsonObj.fromJson(json, ResponseListPlaceDAO.class);
 			
 			//tester response et statut
-			//TODO : gérer les messages d'erreurs internationalisés
+
 			if(response == null)
 			{
-				throw new EasyException("Echec lors du chargement des données");
+				throw new EasyException("Echec lors du chargement des donnï¿½es");
 			}
 			if(!response.getStatut().getIsSuccess())
 			{
-				throw new EasyException("Echec lors du chargement des données");
+				throw new EasyException("Echec lors du chargement des donnï¿½es");
 			}
 		}
 		catch(Exception e)
 		{
-			//TODO : gérer les messages d'erreurs internationalisés
-			throw new EasyException("Echec lors du chargement des données");
+			//TODO : gï¿½rer les messages d'erreurs internationalisï¿½s
+			throw new EasyException("Echec lors du chargement des donnï¿½es");
 	}
 		return response;
 	}
 
 	/**
-	 * Méthode d'appel au web service afin de récupérer une place
+	 * Mï¿½thode d'appel au web service afin de rï¿½cupï¿½rer une place
 	 * en fonction de son id
 	 * @param id : l'id de la place
-	 * @return la réponse du Web Service
+	 * @return la rï¿½ponse du Web Service
 	 * @throws EasyException
 	 */
 	public ResponsePlaceDAO getPlace(Integer id) throws EasyException{
@@ -88,7 +93,7 @@ public class PlaceWSService{
 		ResponsePlaceDAO response = null;
 		try {
 			
-			//initialisation des paramètres à envoyé
+			//initialisation des paramï¿½tres ï¿½ envoyï¿½
 			List<NameValuePair> postParameters = new ArrayList<NameValuePair>();	
 			
 			postParameters.add(new BasicNameValuePair("method","getPlace"));
@@ -100,19 +105,19 @@ public class PlaceWSService{
 			response = vJsonObj.fromJson(json, ResponsePlaceDAO.class);
 			
 			//tester response et statut
-			//TODO : gérer les messages d'erreurs internationalisés
+			//TODO : gï¿½rer les messages d'erreurs internationalisï¿½s
 			if(response == null)
 			{
-				throw new EasyException("Echec lors du chargement des données");
+				throw new EasyException("Echec lors du chargement des donnï¿½es");
 			}
 			if(!response.getStatut().getIsSuccess())
 			{
-				throw new EasyException("Echec lors du chargement des données");
+				throw new EasyException("Echec lors du chargement des donnï¿½es");
 			}
 			
 		} catch (Exception e) {
-			//TODO : gérer les messages d'erreurs internationalisés
-			throw new EasyException("Echec lors du chargement des données");
+			//TODO : gï¿½rer les messages d'erreurs internationalisï¿½s
+			throw new EasyException("Echec lors du chargement des donnï¿½es");
 		}
 		return response;
 	}

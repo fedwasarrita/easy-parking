@@ -6,6 +6,7 @@ import java.util.Iterator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -60,16 +61,16 @@ public class PlaceDetailsActivity extends Activity {
     	//Remplit le tarif
     	TextView txTarif;
     	txTarif = (TextView)findViewById(R.id.textViewtarif);
-    	txTarif.setText(CurrentPlace.getTarif());
+    	txTarif.setText(Html.fromHtml(CurrentPlace.getTarif()));
     	
-    	//Remplit la donnée concernant le handicap
+    	//Remplit la donnï¿½e concernant le handicap
     	TextView txHandicap;
     	txHandicap = (TextView)findViewById(R.id.textViewaccessibilite);
     	if(CurrentPlace.isHandicapee()){
     		txHandicap.setText(R.string.detail_info_accessH);
     	}
     	
-    	//Remplit la donnée sur la sécurisation de la place
+    	//Remplit la donnï¿½e sur la sï¿½curisation de la place
     	TextView txSecurite;
     	txSecurite = (TextView)findViewById(R.id.textViewSecurisation);
     	if(CurrentPlace.isSecurisee()){
@@ -90,7 +91,7 @@ public class PlaceDetailsActivity extends Activity {
     	while(ite.hasNext()){
     		Contrainte vContrainte = ite.next();
     		if(vContrainte.getTypeContrainte().equals("Horaire")){
-    			//On met la contrainte horaire dans un emplacement spécifique
+    			//On met la contrainte horaire dans un emplacement spï¿½cifique
     			TextView txContrainteHoraire;
     			txContrainteHoraire = (TextView)findViewById(R.id.txView_contrainte_horaire);
     			if(txContrainteHoraire == null || txContrainteHoraire.equals(""))
