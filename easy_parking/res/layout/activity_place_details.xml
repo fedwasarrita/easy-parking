@@ -38,7 +38,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop=""
                 android:text="@string/detail_localisation_label"
                 android:textColor="#1a9dff"
                 android:textSize="16dp" />
@@ -47,8 +46,7 @@
                 android:id="@+id/TextAdressvalue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="" />
+                android:layout_marginLeft="25dp" />
 
         </LinearLayout>
 
