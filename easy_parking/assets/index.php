@@ -120,8 +120,8 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 			$places[$i]['isFree']= $place['isFree'];
 			$places[$i]['isHandicap']= $place['isHandicap'];
 			$places[$i]['isSecured']= $place['isSecured'];
-			$places[$i]['typePlace'] = $place['typePlace'];
-			$places[$i]['tarif'] = $place['tarif'];
+			$places[$i]['typePlace'] = ut8_encode($place['typePlace']);
+			$places[$i]['tarif'] = ut8_encode($place['tarif']);
 			
 			$contraintes = array();
 			
