@@ -2,7 +2,6 @@
 <resources>
 	<color name="textColor">#000000</color>
 	<color name="btnTextColor">#FFFFFF</color>
-	<color name="background">#FFFFFF</color>
 	<color name="titleTextColor">#000000</color>
 	<color name="seekBarValueTextColor">#000000</color>
 </resources>

@@ -24,7 +24,7 @@ public class TabResultsActivity extends TabActivity {
         Intent tempIntent=this.getIntent();
         SearchForm searchF= (SearchForm)tempIntent.getSerializableExtra("SearchForm");
         
-        mapSpec.setIndicator("Carte", getResources().getDrawable(R.drawable.ic_action_search));
+        mapSpec.setIndicator("Carte", getResources().getDrawable(R.drawable.ic_action_search_light));
         Intent mapIntent = new Intent(this, MapViewActivity.class);
         mapIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
         mapIntent.putExtra("SearchForm", searchF);
@@ -33,7 +33,7 @@ public class TabResultsActivity extends TabActivity {
         // Tab for the List
         TabSpec listSpec = tabHost.newTabSpec("Songs");
         // setting Title and Icon for the Tab
-        listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_view_as_list_light));
+        listSpec.setIndicator("Liste", getResources().getDrawable(R.drawable.ic_view_as_list_dark));
         Intent listIntent = new Intent(this, ListResultsActivity.class);
         listIntent.putExtra("LocationWay", getIntent().getStringExtra("LocationWay"));
         listIntent.putExtra("SearchForm", searchF);

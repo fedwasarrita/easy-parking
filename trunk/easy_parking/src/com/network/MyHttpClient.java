@@ -17,7 +17,7 @@ import org.apache.commons.io.IOUtils;
 import android.util.Log;
 
 /**
- * Class permettant de gérer le client Http
+ * Class permettant de gï¿½rer le client Http
  * 
  * @author Aurelie
  *
@@ -50,9 +50,9 @@ public class MyHttpClient {
     }
 
     /**
-     * Méthode permettant de générer une requête HTTP en POST 
-     * @param url : l'url de la requête
-     * @param values : list des valeurs à poster
+     * Mï¿½thode permettant de gï¿½nï¿½rer une requï¿½te HTTP en POST 
+     * @param url : l'url de la requï¿½te
+     * @param values : list des valeurs ï¿½ poster
      * @return la reponse du serveur
      * @throws IOException
      */
@@ -71,6 +71,10 @@ public class MyHttpClient {
 
             retour = IOUtils.toString(is);
 
+            retour = new String(retour.getBytes(), "UTF-8");
+           
+            retour.replace("\u0080", "â‚¬");
+            
             for (NameValuePair value : values) {
                     Log.v("SESSION", value.getName() + " : " + value.getValue());	
             }
