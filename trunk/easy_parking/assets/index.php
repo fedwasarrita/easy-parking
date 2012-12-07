@@ -114,8 +114,8 @@ function getListPlace($lat,$long,$peri,$filters,$pdo)
 			$places[$i]['idPlace']= $place['idPlace'];
 			$places[$i]['latitude']= $place['latitude'];
 			$places[$i]['longitude']= $place['longitude'];
-			$places[$i]['adresse'] = $place['adresse'];
-			$places[$i]['ville'] = $place['ville'];
+			$places[$i]['adresse'] = utf8_encode($place['adresse']);
+			$places[$i]['ville'] = utf8_encode($place['ville']);
 			$places[$i]['codePostal'] = $place['codePostal'];
 			$places[$i]['isFree']= $place['isFree'];
 			$places[$i]['isHandicap']= $place['isHandicap'];
