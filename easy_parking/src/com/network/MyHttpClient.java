@@ -70,10 +70,7 @@ public class MyHttpClient {
             InputStream is = response.getEntity().getContent();
 
             retour = IOUtils.toString(is);
-
-            retour = new String(retour.getBytes(), "UTF-8");
            
-            retour.replace("\u0080", "€");
             
             for (NameValuePair value : values) {
                     Log.v("SESSION", value.getName() + " : " + value.getValue());	

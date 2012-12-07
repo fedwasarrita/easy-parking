@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.model.AO.SearchForm;
 import com.model.AO.TypePlace;
+import com.provider.PlaceProvider;
 
 public class HomeActivity extends Activity {
 	
@@ -90,6 +91,8 @@ public class HomeActivity extends Activity {
 				((TextView)findViewById(R.id.TextViewPerimetreValue)).setText("" + progress +"m");
 			}
 		});
+        
+        PlaceProvider.listPlaces = null;
     }
 
     @Override
